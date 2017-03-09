@@ -1,0 +1,182 @@
+EXCEPTION STACK:
+
+
+  Exception: java.lang.RuntimeException
+    Message: Exception assembling root component of page Index: Exception assembling embedded component 'layout' (of type com.leoni.forsimport.components.Layout, within Index): Could not convert 'asset:context:/favicon.ico' into a component parameter binding: Unable to locate asset 'context:favicon.ico' (the file does not exist).
+
+  Exception: org.apache.tapestry5.ioc.internal.util.TapestryException
+    Message: Exception assembling embedded component 'layout' (of type com.leoni.forsimport.components.Layout, within Index): Could not convert 'asset:context:/favicon.ico' into a component parameter binding: Unable to locate asset 'context:favicon.ico' (the file does not exist).
+   location: classpath:com/leoni/forsimport/pages/Index.tml, line 3
+
+  Exception: org.apache.tapestry5.ioc.internal.util.TapestryException
+    Message: Could not convert 'asset:context:/favicon.ico' into a component parameter binding: Unable to locate asset 'context:favicon.ico' (the file does not exist).
+   location: classpath:com/leoni/forsimport/components/Layout.tml, line 12
+
+  Exception: org.apache.tapestry5.ioc.internal.OperationException
+    Message: Unable to locate asset 'context:favicon.ico' (the file does not exist).
+      trace: Handling page render request for page Index
+             Constructing instance of page class com.leoni.forsimport.pages.Index
+             Assembling root component for page Index
+             Assembling component Index:layout (com.leoni.forsimport.components.Layout)
+             Resolving 'context:/favicon.ico' for component Index:layout
+
+  Exception: java.lang.RuntimeException
+    Message: Unable to locate asset 'context:favicon.ico' (the file does not exist).
+
+  Stack trace:
+
+  - org.apache.tapestry5.internal.services.AssetSourceImpl.getLocalizedAssetFromResource(AssetSourceImpl.java:390)
+  - org.apache.tapestry5.internal.services.AssetSourceImpl.getAssetInLocale(AssetSourceImpl.java:305)
+  - org.apache.tapestry5.internal.services.AssetSourceImpl.access$300(AssetSourceImpl.java:46)
+  - org.apache.tapestry5.internal.services.AssetSourceImpl$1.invoke(AssetSourceImpl.java:190)
+  - org.apache.tapestry5.internal.services.AssetSourceImpl$1.invoke(AssetSourceImpl.java:152)
+  - org.apache.tapestry5.ioc.internal.OperationTrackerImpl.invoke(OperationTrackerImpl.java:82)
+  - org.apache.tapestry5.ioc.internal.PerThreadOperationTracker.invoke(PerThreadOperationTracker.java:72)
+  - org.apache.tapestry5.ioc.internal.RegistryImpl.invoke(RegistryImpl.java:1260)
+  - org.apache.tapestry5.internal.services.AssetSourceImpl.getComponentAsset(AssetSourceImpl.java:150)
+  - $AssetSource_f49d68c728bf.getComponentAsset(Unknown Source)
+  - org.apache.tapestry5.internal.bindings.AssetBindingFactory.newBinding(AssetBindingFactory.java:44)
+  - $BindingFactory_f49d68c72971.newBinding(Unknown Source)
+  - org.apache.tapestry5.internal.services.BindingSourceImpl.newBinding(BindingSourceImpl.java:81)
+  - $BindingSource_f49d68c72916.newBinding(Unknown Source)
+  - org.apache.tapestry5.internal.services.PageElementFactoryImpl.parseAttributeExpansionExpression(PageElementFactoryImpl.java:114)
+  - org.apache.tapestry5.internal.services.PageElementFactoryImpl.newAttributeElement(PageElementFactoryImpl.java:65)
+  - $PageElementFactory_f49d68c7294c.newAttributeElement(Unknown Source)
+  - org.apache.tapestry5.internal.pageload.PageLoaderImpl$13.execute(PageLoaderImpl.java:1012)
+  - org.apache.tapestry5.internal.pageload.ComponentAssemblerImpl.runActions(ComponentAssemblerImpl.java:229)
+  - org.apache.tapestry5.internal.pageload.ComponentAssemblerImpl.access$300(ComponentAssemblerImpl.java:37)
+  - org.apache.tapestry5.internal.pageload.ComponentAssemblerImpl$2.run(ComponentAssemblerImpl.java:180)
+  - org.apache.tapestry5.ioc.internal.OperationTrackerImpl.run(OperationTrackerImpl.java:56)
+  - org.apache.tapestry5.ioc.internal.PerThreadOperationTracker.run(PerThreadOperationTracker.java:60)
+  - org.apache.tapestry5.ioc.internal.RegistryImpl.run(RegistryImpl.java:1254)
+  - org.apache.tapestry5.internal.pageload.ComponentAssemblerImpl.assembleEmbeddedComponent(ComponentAssemblerImpl.java:158)
+  - org.apache.tapestry5.internal.pageload.PageLoaderImpl$12.execute(PageLoaderImpl.java:963)
+  - org.apache.tapestry5.internal.pageload.ComponentAssemblerImpl.runActions(ComponentAssemblerImpl.java:229)
+  - org.apache.tapestry5.internal.pageload.ComponentAssemblerImpl.performAssembleRootComponent(ComponentAssemblerImpl.java:105)
+  - org.apache.tapestry5.internal.pageload.ComponentAssemblerImpl.access$000(ComponentAssemblerImpl.java:37)
+  - org.apache.tapestry5.internal.pageload.ComponentAssemblerImpl$1.invoke(ComponentAssemblerImpl.java:81)
+  - org.apache.tapestry5.internal.pageload.ComponentAssemblerImpl$1.invoke(ComponentAssemblerImpl.java:78)
+  - org.apache.tapestry5.ioc.internal.OperationTrackerImpl.invoke(OperationTrackerImpl.java:82)
+  - org.apache.tapestry5.ioc.internal.PerThreadOperationTracker.invoke(PerThreadOperationTracker.java:72)
+  - org.apache.tapestry5.ioc.internal.RegistryImpl.invoke(RegistryImpl.java:1260)
+  - org.apache.tapestry5.internal.pageload.ComponentAssemblerImpl.assembleRootComponent(ComponentAssemblerImpl.java:76)
+  - org.apache.tapestry5.internal.pageload.PageLoaderImpl$3.invoke(PageLoaderImpl.java:197)
+  - org.apache.tapestry5.internal.pageload.PageLoaderImpl$3.invoke(PageLoaderImpl.java:190)
+  - org.apache.tapestry5.ioc.internal.OperationTrackerImpl.invoke(OperationTrackerImpl.java:82)
+  - org.apache.tapestry5.ioc.internal.PerThreadOperationTracker.invoke(PerThreadOperationTracker.java:72)
+  - org.apache.tapestry5.ioc.internal.RegistryImpl.invoke(RegistryImpl.java:1260)
+  - org.apache.tapestry5.internal.pageload.PageLoaderImpl.loadPage(PageLoaderImpl.java:189)
+  - $PageLoader_f49d68c72936.loadPage(Unknown Source)
+  - org.apache.tapestry5.internal.services.PageSourceImpl.getPage(PageSourceImpl.java:104)
+  - $PageSource_f49d68c72935.getPage(Unknown Source)
+  - org.apache.tapestry5.internal.services.RequestPageCacheImpl.get(RequestPageCacheImpl.java:86)
+  - $RequestPageCache_f49d68c72934.get(Unknown Source)
+  - $RequestPageCache_f49d68c7292f.get(Unknown Source)
+  - org.apache.tapestry5.internal.services.PageRenderRequestHandlerImpl.handle(PageRenderRequestHandlerImpl.java:56)
+  - org.apache.tapestry5.modules.TapestryModule$34.handle(TapestryModule.java:1974)
+  - $PageRenderRequestHandler_f49d68c72933.handle(Unknown Source)
+  - $PageRenderRequestHandler_f49d68c7292d.handle(Unknown Source)
+  - org.apache.tapestry5.internal.services.ComponentRequestHandlerTerminator.handlePageRender(ComponentRequestHandlerTerminator.java:48)
+  - org.apache.tapestry5.internal.services.DeferredResponseRenderer.handlePageRender(DeferredResponseRenderer.java:52)
+  - $ComponentRequestHandler_f49d68c7292e.handlePageRender(Unknown Source)
+  - org.apache.tapestry5.services.InitializeActivePageName.handlePageRender(InitializeActivePageName.java:47)
+  - $ComponentRequestHandler_f49d68c7292e.handlePageRender(Unknown Source)
+  - org.apache.tapestry5.internal.services.RequestOperationTracker$2.run(RequestOperationTracker.java:73)
+  - org.apache.tapestry5.ioc.internal.OperationTrackerImpl.run(OperationTrackerImpl.java:56)
+  - org.apache.tapestry5.ioc.internal.PerThreadOperationTracker.run(PerThreadOperationTracker.java:60)
+  - org.apache.tapestry5.ioc.internal.RegistryImpl.run(RegistryImpl.java:1254)
+  - org.apache.tapestry5.internal.services.RequestOperationTracker.handlePageRender(RequestOperationTracker.java:66)
+  - $ComponentRequestHandler_f49d68c7292e.handlePageRender(Unknown Source)
+  - $ComponentRequestHandler_f49d68c728f7.handlePageRender(Unknown Source)
+  - org.apache.tapestry5.internal.services.PageRenderDispatcher.dispatch(PageRenderDispatcher.java:55)
+  - $Dispatcher_f49d68c728f9.dispatch(Unknown Source)
+  - $Dispatcher_f49d68c728ee.dispatch(Unknown Source)
+  - org.apache.tapestry5.modules.TapestryModule$RequestHandlerTerminator.service(TapestryModule.java:305)
+  - org.apache.tapestry5.internal.services.RequestErrorFilter.service(RequestErrorFilter.java:26)
+  - $RequestHandler_f49d68c728ef.service(Unknown Source)
+  - org.apache.tapestry5.modules.TapestryModule$3.service(TapestryModule.java:846)
+  - $RequestHandler_f49d68c728ef.service(Unknown Source)
+  - org.apache.tapestry5.modules.TapestryModule$2.service(TapestryModule.java:836)
+  - $RequestHandler_f49d68c728ef.service(Unknown Source)
+  - org.apache.tapestry5.internal.services.StaticFilesFilter.service(StaticFilesFilter.java:89)
+  - $RequestHandler_f49d68c728ef.service(Unknown Source)
+  - com.leoni.forsimport.services.AppModule$1.service(AppModule.java:113)
+  - $RequestFilter_f49d68c728e9.service(Unknown Source)
+  - $RequestHandler_f49d68c728ef.service(Unknown Source)
+  - org.apache.tapestry5.internal.services.CheckForUpdatesFilter$2.invoke(CheckForUpdatesFilter.java:105)
+  - org.apache.tapestry5.internal.services.CheckForUpdatesFilter$2.invoke(CheckForUpdatesFilter.java:95)
+  - org.apache.tapestry5.ioc.internal.util.ConcurrentBarrier.withRead(ConcurrentBarrier.java:83)
+  - org.apache.tapestry5.internal.services.CheckForUpdatesFilter.service(CheckForUpdatesFilter.java:119)
+  - $RequestHandler_f49d68c728ef.service(Unknown Source)
+  - $RequestHandler_f49d68c728e3.service(Unknown Source)
+  - org.apache.tapestry5.modules.TapestryModule$HttpServletRequestHandlerTerminator.service(TapestryModule.java:256)
+  - org.apache.tapestry5.internal.gzip.GZipFilter.service(GZipFilter.java:59)
+  - $HttpServletRequestHandler_f49d68c728e5.service(Unknown Source)
+  - org.apache.tapestry5.internal.services.IgnoredPathsFilter.service(IgnoredPathsFilter.java:62)
+  - $HttpServletRequestFilter_f49d68c728e0.service(Unknown Source)
+  - $HttpServletRequestHandler_f49d68c728e5.service(Unknown Source)
+  - org.apache.tapestry5.modules.TapestryModule$1.service(TapestryModule.java:796)
+  - $HttpServletRequestHandler_f49d68c728e5.service(Unknown Source)
+  - $HttpServletRequestHandler_f49d68c728df.service(Unknown Source)
+  - org.apache.tapestry5.TapestryFilter.doFilter(TapestryFilter.java:166)
+  - org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1148)
+  - org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:387)
+  - org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+  - org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
+  - org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+  - org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:417)
+  - org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
+  - org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+  - org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+  - org.mortbay.jetty.Server.handle(Server.java:324)
+  - org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:535)
+  - org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:865)
+  - org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:539)
+  - org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+  - org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+  - org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:409)
+  - org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:520)
+
+REQUEST:
+
+Basic Information:
+
+                contextPath: /forsimport
+                     method: GET
+                       path: /
+                     locale: en_US
+                 serverName: localhost
+                 remoteHost: 0:0:0:0:0:0:0:1
+
+Headers:
+
+                     Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+            Accept-Encoding: gzip, deflate, sdch, br
+            Accept-Language: en-US,en;q=0.8,fr;q=0.6
+              Cache-Control: max-age=0
+                 Connection: keep-alive
+                     Cookie: install_421aa90e079f=tmt1mmoqadv8shkqnoni75a134; install_fe1db3fe8c57=hchotoguvsi20mb7dmq6so3ld7; PHPSESSID=55tpfj9toeq098pod7pviamot5; install_fe1db3fe8c57d7d33b64938994bcbb0b=en1vsdrk0m328u409k5dfd51l0
+                       Host: localhost:8080
+  Upgrade-Insecure-Requests: 1
+                 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+
+SYSTEM INFORMATION:
+
+Memory:
+       47 181 232 bytes free
+      148 373 504 bytes total
+    1 413 480 448 bytes max
+
+12 Threads:
+                                                           Reference Handler WAITING, daemon, priority 10
+                                                                   Finalizer WAITING, daemon, priority 8
+                                                           Signal Dispatcher RUNNABLE, daemon, priority 9
+                                                             Attach Listener RUNNABLE, daemon
+                                                                        main WAITING
+                                                  1223303171@qtp-691096777-0 TIMED_WAITING
+  1797159635@qtp-691096777-1 - Acceptor0 SelectChannelConnector@0.0.0.0:8080 RUNNABLE
+                                                                     Timer-0 TIMED_WAITING, daemon
+                                                  1544345513@qtp-691096777-2 TIMED_WAITING
+*                                                 1226704574@qtp-691096777-4 RUNNABLE
+                                                   705799635@qtp-691096777-5 TIMED_WAITING
+                                                  1232844744@qtp-691096777-6 TIMED_WAITING
