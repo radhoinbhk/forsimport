@@ -23,7 +23,7 @@ public class Error404
 	 ResultSetMetaData rsmd = rs.getMetaData();
 	 
 	 Table table = new Table();
-	 
+	 table.setTableName("target_table");
 	 
 	 /*get the column name of the primary key*/
 	 ResultSet pkColumns= connexion.getMetaData().getPrimaryKeys(null,null,"test");
