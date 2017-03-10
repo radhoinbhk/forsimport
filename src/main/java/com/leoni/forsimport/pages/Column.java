@@ -36,8 +36,16 @@ public class Column {
 	 * @return the columnType
 	 */
 	public String getColumnType() {
-		if (columnType.equals("char")) {
-			return columnType + " (" + getPrecision() + ")";
+		switch (columnType) {
+		case "bpchar":
+			
+			break;
+
+		default:
+			break;
+		}
+		if (columnType.equals("bpchar")) {
+			return "char (" + getPrecision() + ")";
 		} else if (columnType.equals("numeric")) {
 			return columnType + " (" + getPrecision() + "," + getScale() + ")";
 		} else {

@@ -19,7 +19,7 @@
 	</classpathentry>
 	<classpathentry kind="var" path="M2_REPO/javax/inject/javax.inject/1/javax.inject-1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
@@ -130,10 +130,6 @@
 	<classpathentry kind="var" path="M2_REPO/org/postgresql/postgresql/42.0.0/postgresql-42.0.0.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/poi/poi/3.15/poi-3.15.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HP/.m2/repository/org/apache/poi/poi/3.15/poi-3.15.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HP/.m2/repository/org/apache/poi/poi-excelant/3.15/poi-excelant-3.15.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HP/.m2/repository/org/apache/poi/poi-ooxml/3.15/poi-ooxml-3.15.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HP/.m2/repository/org/apache/poi/poi-ooxml-schemas/3.15/poi-ooxml-schemas-3.15.jar"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
