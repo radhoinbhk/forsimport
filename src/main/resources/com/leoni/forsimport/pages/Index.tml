@@ -1,4 +1,4 @@
-<html t:type="layout" title="forsimport Index"
+<html t:type="layout" title="application Index"
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd">
 
 	<!-- Most of the page content, including <head>, <body>, etc. tags, comes 
@@ -6,14 +6,6 @@
 
 	<!-- Main hero unit for a primary marketing message or call to action -->
 
-
-	<!-- Example row of columns -->
-	<div class="row">
-		<t:TextField t:id="textValue" />
-                <t:submit t:id="delete" value="Delete User"/>
-
-	</div>
-
-
+	<h1>${message:select_file_index}</h1>
 
 </html>
