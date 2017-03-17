@@ -160,14 +160,14 @@ public class Column {
 
 	/**
 	 * @param positioncolumn
-	 *            the positioncolumn to set
+	 *            the position column to set.
 	 */
 	public void setPositioncolumn(Integer positioncolumn) {
 		this.positioncolumn = positioncolumn;
 	}
 
 	/**
-	 * @return the scale
+	 * @return the scale.
 	 */
 	public Integer getScale() {
 		return scale;
@@ -175,14 +175,14 @@ public class Column {
 
 	/**
 	 * @param scale
-	 *            the scale to set
+	 *            the scale to set.
 	 */
 	public void setScale(Integer scale) {
 		this.scale = scale;
 	}
 
 	/**
-	 * @return the columnTypeJdbc
+	 * @return the columnTypeJdbc.
 	 */
 	public String getColumnTypeJdbc() {
 		return columnTypeJdbc.toUpperCase();
@@ -190,7 +190,7 @@ public class Column {
 
 	/**
 	 * @param columnTypeJdbc
-	 *            the columnTypeJdbc to set
+	 *            the columnTypeJdbc to set.
 	 */
 	public void setColumnTypeJdbc(String columnTypeJdbc) {
 		this.columnTypeJdbc = columnTypeJdbc;
