@@ -15,21 +15,37 @@ public class TableDAO {
 
 	/**
 	 * Returns an object representing the table structure.
+	 * 
 	 * @param table
 	 * @return
 	 */
+	public Connection getConnection() {
+		Connection connexion = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			connexion = DriverManager.getConnection("jdbc:postgresql://localhost:9090/test_vieExcel", "postgres",
+					"radhoinbhk123456789");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return connexion;
+	}
+
 	public Table getTableStructure(String tableName) {
 		Table table = new Table();
 		try {
-			Class.forName("org.postgresql.Driver");
-			Connection connexion = DriverManager.getConnection("jdbc:postgresql://localhost:9090/test_vieExcel",
-					"postgres", "radhoinbhk123456789");
-
+			Connection connexion = getConnection();
 			Statement stmt = connexion.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from " + tableName);
 			ResultSetMetaData rsmd = rs.getMetaData();
 
-			
 			ArrayList<Column> columns = new ArrayList<Column>();
 
 			/* get the column name of the primary key */
@@ -59,10 +75,7 @@ public class TableDAO {
 			}
 
 			table.setColumns(columns);
-			table.setTableName("target_table");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			table.setTableName(tableName);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,4 +83,5 @@ public class TableDAO {
 
 		return table;
 	}
+
 }
