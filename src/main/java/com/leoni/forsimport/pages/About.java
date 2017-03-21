@@ -1,18 +1,11 @@
 package com.leoni.forsimport.pages;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.poifs.filesystem.NPOIFSFileSystem;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -21,15 +14,14 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbookType;
 
 public class About {
 
 	/**
-	 * method create the EXEL file for structure table
+	 * Méthode de récupération structure de table sous forme de fichier Excel
 	 */
 
-	public static void setExcel(Table table) {
+	public static void getExcel(Table table) {
 
 		ArrayList<Column> columns = new ArrayList<Column>();
 		columns = table.getColumns();
@@ -48,7 +40,7 @@ public class About {
 			// 4. COLUMN_NAME
 			Cell colulnName = rowName.createCell(i);
 			colulnName.setCellValue(column.getColumnName());
-			// 4. COLUMN_Type
+			// 5. COLUMN_Type
 			Cell colulnType = rowType.createCell(i);
 			colulnType.setCellValue(column.getColumnType());
 			try {
@@ -68,13 +60,29 @@ public class About {
 	/**
 	 * read the Excel file
 	 */
-	// public static Table getExcel() {
 	public static void main(String[] args) {
 
+		// initialize File object
+		File file = new File("export.xslx");
+		boolean result;
+
+		// check if file exists
+		result = file.exists();
 		try {
-			FileInputStream fs = new FileInputStream(
-					new File("C:/Users/HP/workspacePFE/forsimport/src/main/webapp/Excel/the Excel readed/01.xlsx"));
-			XSSFWorkbook wb = new XSSFWorkbook(fs);
+			if (result) {
+
+				// file exists
+				System.out.println(file.getCanonicalPath() + " exists");
+				// System.out.println(file.getAbsolutePath()+ " exists");
+				// System.out.println(file.getPath()+ " exists");
+			} else {
+
+				// file does not exist
+				System.out.println(file.getCanonicalPath() + " does not exists");
+
+			}
+
+			XSSFWorkbook wb = new XSSFWorkbook(file);
 			XSSFSheet sheet = wb.getSheetAt(0);
 
 			for (int r = 0; r < sheet.getPhysicalNumberOfRows(); r++) {
@@ -96,12 +104,12 @@ public class About {
 					}
 				}
 			}
-		} catch (FileNotFoundException e) {
+
+		} catch (Exception e) {
+			System.err.println("Things went wrong: " + e.getMessage());
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+
 		}
-		// return null;
 
 	}
 }
