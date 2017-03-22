@@ -1,4 +1,4 @@
-package com.leoni.forsimport.pages;
+package com.leoni.forsimport.model;
 
 public class Column {
 
