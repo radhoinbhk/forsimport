@@ -1,0 +1,76 @@
+EXCEPTION STACK:
+
+
+  Exception: org.apache.tapestry5.runtime.ComponentEventException
+    Message: 
+    context: org.apache.tapestry5.internal.EmptyEventContext@ab178a3
+  eventType: action
+   location: classpath:com/leoni/forsimport/pages/Import.tml, line 9
+
+  Exception: org.apache.tapestry5.ioc.internal.OperationException
+    Message: 
+   location: classpath:com/leoni/forsimport/pages/Import.tml, line 16
+      trace: Handling traditional 'action' component event request for Import:form.
+             Triggering event 'action' on Import:form
+             Triggering event 'selected' on Import:upload
+
+  Exception: org.apache.tapestry5.runtime.ComponentEventException
+    Message: 
+    context: <EventContext>
+  eventType: selected
+   location: classpath:com/leoni/forsimport/pages/Import.tml, line 16
+
+  Exception: java.lang.ArrayIndexOutOfBoundsException
+    Message: 
+
+REQUEST:
+
+Basic Information:
+
+                contextPath: /forsimport
+                     method: POST
+                       path: /import.form
+                     locale: en_US
+                 serverName: localhost
+                 remoteHost: 0:0:0:0:0:0:0:1
+
+Headers:
+
+                     Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+            Accept-Encoding: gzip, deflate, br
+            Accept-Language: en-US,en;q=0.8,fr;q=0.6
+              Cache-Control: max-age=0
+                 Connection: keep-alive
+             Content-Length: 3722202
+               Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryyaYBFeaunq7p9tS2
+                     Cookie: install_421aa90e079f=tmt1mmoqadv8shkqnoni75a134; install_fe1db3fe8c57=hchotoguvsi20mb7dmq6so3ld7; PHPSESSID=55tpfj9toeq098pod7pviamot5; install_fe1db3fe8c57d7d33b64938994bcbb0b=en1vsdrk0m328u409k5dfd51l0
+                       Host: localhost:8080
+                     Origin: http://localhost:8080
+                    Referer: http://localhost:8080/forsimport/import
+  Upgrade-Insecure-Requests: 1
+                 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+
+Parameters:
+                       file: 01-KDV-Liste_actuell_20160912_übertrag.xlsx
+                 t:formdata: lYD7PPe5NLCqRhpSZpyyW8hYKJM=:H4sIAAAAAAAAAFvzloG1nI+B2zO3IL+oxCotMyeVobiIwTS/KF0vsSAxOSNVrySxILW4pKjSVC85vyg1JzNJLymxOFXPMQkomJhc4paZmpOiEpxaUlqgGnqY+6Ho8T9MDIw+DNzJ+XklRfk5fom5qSUMQj5ZiWWJ+jmJeen6wSVFmXnp1hUFJQwsIAux2O9Iqv0BRfnJqcXFwaVJuZnFxZn5eYfXpZikfZt3jomBoaKgXICBF2pDaUFOfmIKyA4HvHYk5wPV56XmlRTrgQ0twbRiZvAnya1bWpyZGJh8GDiSczKBqj1TChnqwN5PzUnNBQqAvA8WAnmXDWI7nAEAm5ywjX4BAAA=
+                   t:submit: ["upload","upload"]
+                     upload: Upload
+
+SYSTEM INFORMATION:
+
+Memory:
+      342 858 608 bytes free
+      447 217 664 bytes total
+    1 413 480 448 bytes max
+
+10 Threads:
+                                                          Reference Handler WAITING, daemon, priority 10
+                                                                  Finalizer WAITING, daemon, priority 8
+                                                          Signal Dispatcher RUNNABLE, daemon, priority 9
+                                                            Attach Listener RUNNABLE, daemon
+                                                                       main WAITING
+  805690186@qtp-176097974-0 - Acceptor0 SelectChannelConnector@0.0.0.0:8080 RUNNABLE
+                                                                    Timer-0 TIMED_WAITING, daemon
+                                                   33627269@qtp-176097974-4 RUNNABLE
+                                                 1946236905@qtp-176097974-5 BLOCKED
+*                                                 526799778@qtp-176097974-7 RUNNABLE

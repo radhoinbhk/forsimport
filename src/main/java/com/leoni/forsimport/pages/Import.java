@@ -53,7 +53,6 @@ public class Import {
 		System.out.println(sheet.getSheetName());
 		for (Row r : sheet) {
 			for (Cell cell : r) {
-				// System.out.println(c.getStringCellValue());
 				int type = cell.getCellType();
 				if (type == CellType.STRING.getCode()) {
 					LOG.info("string" + cell.getStringCellValue());
@@ -61,7 +60,6 @@ public class Import {
 					LOG.info("numeric" + cell.getNumericCellValue());
 				} else if (type == CellType.BOOLEAN.getCode()) {
 					LOG.info("boolean" + cell.getBooleanCellValue());
-
 				}
 			}
 			// TableDAO dao = new TableDAO();

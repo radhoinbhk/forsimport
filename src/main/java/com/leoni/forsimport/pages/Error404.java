@@ -52,6 +52,7 @@ public class Error404 {
 
 			table.setColumns(columns);
 			table.setTableName("target_table");
+			connexion.close();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
