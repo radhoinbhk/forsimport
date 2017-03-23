@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import org.postgresql.core.Field;
 
 public class Error404 {
 	public Table getStructurTable() {
@@ -22,6 +21,7 @@ public class Error404 {
 			ResultSet rs = stmt.executeQuery("select * from target_table");
 			ResultSetMetaData rsmd = rs.getMetaData();
 
+			
 			ArrayList<Column> columns = new ArrayList<Column>();
 
 			/* get the column name of the primary key */

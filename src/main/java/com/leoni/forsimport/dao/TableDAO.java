@@ -1,5 +1,6 @@
 package com.leoni.forsimport.dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,12 +8,16 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Properties;
 
-import com.leoni.forsimport.pages.Column;
-import com.leoni.forsimport.pages.Table;
+import org.apache.log4j.Logger;
+
+import com.leoni.forsimport.model.Column;
+import com.leoni.forsimport.model.Table;
 
 public class TableDAO {
 
+	private static final Logger LOG = Logger.getLogger(TableDAO.class);
 	/**
 	 * Returns an object representing the table structure.
 	 * 
@@ -21,18 +26,18 @@ public class TableDAO {
 	 */
 	public Connection getConnection() {
 		Connection connexion = null;
-		try {
-			Class.forName("org.postgresql.Driver");
+		 try {
+			 Properties properties = new Properties();
+			properties.load(TableDAO.class.getResourceAsStream("db.properties"));
+			Class.forName(properties.getProperty("db_driver"));
+			connexion = DriverManager.getConnection(properties.getProperty("db_url"), properties.getProperty("db_user"),
+					properties.getProperty("db_password"));
+		} catch (IOException e1) {
+			LOG.error("File db.properties cannot be read", e1); 
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			connexion = DriverManager.getConnection("jdbc:postgresql://localhost:9090/test_vieExcel", "postgres",
-					"radhoinbhk123456789");
+			LOG.error("Postgres driver could not be loaded", e); 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.error("Connection could not be established", e); 
 		}
 
 		return connexion;
@@ -43,9 +48,8 @@ public class TableDAO {
 		try {
 			Connection connexion = getConnection();
 			Statement stmt = connexion.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from " + tableName);
+			ResultSet rs = stmt.executeQuery("select * from " + tableName + " limit 1");
 			ResultSetMetaData rsmd = rs.getMetaData();
-
 			ArrayList<Column> columns = new ArrayList<Column>();
 
 			/* get the column name of the primary key */

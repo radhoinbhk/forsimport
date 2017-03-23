@@ -3,9 +3,7 @@
 
 	<!-- Most of the page content, including <head>, <body>, etc. tags, comes 
 		from Layout.tml -->
-
 	<!-- Main hero unit for a primary marketing message or call to action -->
-
 	<h1>${message:select_file_index}</h1>
 
 </html>
