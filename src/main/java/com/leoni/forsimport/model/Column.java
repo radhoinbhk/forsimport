@@ -36,7 +36,7 @@ public class Column {
 	 * @return the columnType
 	 */
 	public String getColumnType() {
-		switch (columnType) {
+		switch (columnType) {////////////
 		case "bpchar":
 			
 			break;
