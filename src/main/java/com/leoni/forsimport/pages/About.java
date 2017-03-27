@@ -48,7 +48,7 @@ public class About {
 						if (cell != null) {
 							CellType type = cell.getCellTypeEnum();
 							if (type == CellType.STRING) {
-								System.out.println("string ***" + cell.getStringCellValue());
+								System.out.println("string" + cell.getStringCellValue());
 							} else if (type == CellType.NUMERIC) {
 								System.out.println("numeric" + cell.getNumericCellValue());
 							} else if (type == CellType.BOOLEAN) {

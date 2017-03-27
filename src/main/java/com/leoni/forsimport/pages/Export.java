@@ -34,8 +34,7 @@ public class Export {
 	public StreamResponse onSelectedFromExport() {
 		LOG.info("Start");
 		TableDAO dao = new TableDAO();
-		Table table = dao.getTableStructure(tableName);
-		return generateExcel(table);
+		return generateExcel(dao.getTableStructure(tableName));
 	}
 
 	

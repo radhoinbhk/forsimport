@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 
 import com.leoni.forsimport.model.Column;
 import com.leoni.forsimport.model.Table;
+import com.thoughtworks.selenium.webdriven.commands.Close;
 
 public class TableDAO {
 
@@ -80,6 +81,7 @@ public class TableDAO {
 
 			table.setColumns(columns);
 			table.setTableName(tableName);
+			connexion.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

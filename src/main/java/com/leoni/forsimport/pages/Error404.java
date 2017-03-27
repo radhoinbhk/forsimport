@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.leoni.forsimport.model.Column;
+import com.leoni.forsimport.model.Table;
+
+
+
 
 public class Error404 {
 	public Table getStructurTable() {
