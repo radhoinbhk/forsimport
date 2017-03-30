@@ -1,0 +1,7 @@
+<html t:type="layout" title="Contact application_leoni"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
+      xmlns:p="tapestry:parameter">
+
+    <p>About application_leoni ...</p>
+
+</html>

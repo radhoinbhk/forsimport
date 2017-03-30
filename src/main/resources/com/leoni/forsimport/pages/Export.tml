@@ -1,0 +1,20 @@
+<html t:type="layout" title="Export"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd">
+	<!-- Most of the page content, including <head>, <body>, etc. tags, comes 
+		from Layout.tml -->
+	<!-- Main hero unit for a primary marketing message or call to action -->
+	<h3>${message:select_file_T} </h3>
+	<br />
+	<t:form class="form-inline">
+
+		<div class="form-group">
+			<t:errors />
+			<label t:type="label" for="table" />
+			<input t:type="textfield" class="form-control" t:id="table"
+				value="tableName" validate="required" />
+			<input t:type="submit" t:id="Export" class="form-control"
+				t:value="Insert" />
+		</div>
+		<br />
+	</t:form>
+</html>

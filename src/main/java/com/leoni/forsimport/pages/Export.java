@@ -23,21 +23,21 @@ import com.leoni.forsimport.services.ExcelStreamResponse;
 
 public class Export {
 	private static final Logger LOG = Logger.getLogger(Export.class);
-	
+
 	@Property
 	@Persist
 	private String tableName;
+
 	/**
 	 * 
 	 */
-	
+
 	public StreamResponse onSelectedFromExport() {
 		LOG.info("Start");
 		TableDAO dao = new TableDAO();
 		return generateExcel(dao.getTableStructure(tableName));
 	}
 
-	
 	/**
 	 * Méthode de récupération structure de table sous forme de fichier Excel
 	 */
@@ -67,11 +67,12 @@ public class Export {
 		String tempFolder = System.getProperty("java.io.tmpdir");
 		LOG.info("Temp folder :" + tempFolder);
 		try {
-			File file = new File(tempFolder + File.separator + table.getTableName() + "_" + System.currentTimeMillis() + ".xlsx");
+			File file = new File(
+					tempFolder + File.separator + table.getTableName() + "_" + System.currentTimeMillis() + ".xlsx");
 			FileOutputStream fileOut = new FileOutputStream(file);
 			wb.write(fileOut);
 			fileOut.close();
-//			Thread.sleep(10000);
+			// Thread.sleep(10000);
 			return new ExcelStreamResponse(new FileInputStream(file), tableName);
 		} catch (FileNotFoundException e) {
 			LOG.error("File not found", e);
@@ -79,12 +80,9 @@ public class Export {
 		} catch (IOException e) {
 			LOG.error("Unknown error", e);
 			return null;
-		} /*catch (InterruptedException e) {
-			LOG.error("Unknown error", e);
-			return null;
-		}*/
-
+		} /*
+			 * catch (InterruptedException e) { LOG.error("Unknown error", e);
+			 * return null; }
+			 */
 	}
-	
-
 }

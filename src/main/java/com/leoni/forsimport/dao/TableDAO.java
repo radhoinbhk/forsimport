@@ -14,11 +14,11 @@ import org.apache.log4j.Logger;
 
 import com.leoni.forsimport.model.Column;
 import com.leoni.forsimport.model.Table;
-import com.thoughtworks.selenium.webdriven.commands.Close;
 
 public class TableDAO {
 
 	private static final Logger LOG = Logger.getLogger(TableDAO.class);
+
 	/**
 	 * Returns an object representing the table structure.
 	 * 
@@ -27,18 +27,18 @@ public class TableDAO {
 	 */
 	public Connection getConnection() {
 		Connection connexion = null;
-		 try {
-			 Properties properties = new Properties();
+		try {
+			Properties properties = new Properties();
 			properties.load(TableDAO.class.getResourceAsStream("db.properties"));
 			Class.forName(properties.getProperty("db_driver"));
 			connexion = DriverManager.getConnection(properties.getProperty("db_url"), properties.getProperty("db_user"),
 					properties.getProperty("db_password"));
 		} catch (IOException e1) {
-			LOG.error("File db.properties cannot be read", e1); 
+			LOG.error("File db.properties cannot be read", e1);
 		} catch (ClassNotFoundException e) {
-			LOG.error("Postgres driver could not be loaded", e); 
+			LOG.error("Postgres driver could not be loaded", e);
 		} catch (SQLException e) {
-			LOG.error("Connection could not be established", e); 
+			LOG.error("Connection could not be established", e);
 		}
 
 		return connexion;
@@ -89,5 +89,4 @@ public class TableDAO {
 
 		return table;
 	}
-
 }
