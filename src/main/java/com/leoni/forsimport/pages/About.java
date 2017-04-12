@@ -9,9 +9,6 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class About {
-
-	
-
 	/**
 	 * read the Excel file
 	 */
@@ -63,8 +60,6 @@ public class About {
 		} catch (Exception e) {
 			System.err.println("Things went wrong: " + e.getMessage());
 			e.printStackTrace();
-
 		}
-
 	}
 }

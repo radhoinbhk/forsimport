@@ -30,6 +30,4 @@ public class Table {
 	public void setColumns(ArrayList<Column> columns) {
 		this.columns = columns;
 	}
-	
-
 }

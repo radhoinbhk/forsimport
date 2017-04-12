@@ -32,8 +32,6 @@ public class Login
   @Property
   private String password;
 
-
-
   void onValidateFromLogin()
   {
     if ( !email.equals("users@tapestry.apache.org"))

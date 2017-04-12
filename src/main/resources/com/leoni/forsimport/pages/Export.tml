@@ -6,12 +6,12 @@
 	<h3>${message:select_file_T} </h3>
 	<br />
 	<t:form class="form-inline">
-	
+
 		<div class="form-group">
-		<t:errors />
+			<t:errors />
 			<label t:type="label" for="table" />
 			<input t:type="textfield" class="form-control" t:id="table"
-				value="tableName" validate="required"/>
+				value="tableName" validate="required" />
 			<input t:type="submit" t:id="Export" class="form-control"
 				t:value="Insert" />
 		</div>

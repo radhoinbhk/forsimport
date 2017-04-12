@@ -1,0 +1,21 @@
+<html t:type="layout" title="Export"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd">
+
+	<!-- Most of the page content, including <head>, <body>, etc. tags, comes 
+		from Layout.tml -->
+	<!-- Main hero unit for a primary marketing message or call to action -->
+	<h3>${message:select_file_T} </h3>
+	<br />
+	<div class="eg">
+		<t:form class="form-horizontal">
+			<div class="form-group">
+				<t:label for="tableName" class="col-sm-3">
+					Type in a table name:
+				</t:label>
+				<div class="col-sm-3">
+					<t:textfield t:id="tableName" t:mixins="autocomplete" />
+				</div>
+			</div>
+		</t:form>
+	</div>
+</html>
