@@ -1,7 +1,5 @@
 package com.leoni.forsimport.model;
 
-import org.apache.poi.ss.usermodel.Cell;
-
 public class Error {
 	
 	private String typeError ;
@@ -27,8 +25,8 @@ public class Error {
 	/**
 	 * @param locationError the locationError to set
 	 */
-	public void setNumCellError(int numCellError) {
-		this.numCellError = numCellError;
+	public void setNumCellError(int cell) {
+		this.numCellError = cell;
 	}
 
 	

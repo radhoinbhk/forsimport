@@ -9,6 +9,9 @@
 	<t:form class="form-inline">
 		<div class="form-group">
 			<t:errors />
+			<h3>${message:select_table_name}</h3>
+			<input t:type="textfield" class="form-control" t:id="table"
+				value="tableName" validate="required"/>
 			<h3>${message:select_file}</h3>
 			<input t:type="upload" class="form-control" t:id="file"
 				t:value="file" validate="required" />

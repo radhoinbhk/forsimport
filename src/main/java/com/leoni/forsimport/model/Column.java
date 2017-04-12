@@ -3,7 +3,7 @@ package com.leoni.forsimport.model;
 public class Column {
 
 	private String columnName;
-	private String columnType;
+	String columnType;
 	private int nullable;
 	private boolean primaryKey;
 	private boolean defaultValue;
@@ -36,7 +36,7 @@ public class Column {
 	 * @return the columnType
 	 */
 	public String getColumnType() {
-		switch (columnType) {////////////
+		switch (columnType) {
 		case "bpchar":
 			
 			break;

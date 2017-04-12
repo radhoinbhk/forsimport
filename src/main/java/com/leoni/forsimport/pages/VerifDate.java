@@ -3,7 +3,7 @@ package com.leoni.forsimport.pages;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class verifDate {
+public class VerifDate {
 	
 	private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy/MM/dd");
 
@@ -11,7 +11,7 @@ public class verifDate {
 		String dateString = "2016/02/03";
 		
 		String[] tab = dateString.split("/");
-		System.out.println(String.format("tab %s, %s, %s", tab[0], tab[1], tab[2]));
+		System.out.println(String.format("%s%s%s", tab[0], tab[1], tab[2]));
 //		Date date = SDF.parse(dateString);
 //		if (date != null) {
 //			Calendar calendar = Calendar.getInstance();
