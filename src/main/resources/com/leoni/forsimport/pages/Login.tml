@@ -1,16 +1,51 @@
-<html t:type="layout" title="application com.example"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
-      xmlns:p="tapestry:parameter">
+<html t:type="LoginComponent" title="Login"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+	<body class="theme-default" background="/web/src/main/webapp/mybootstrap/common/img/temp/login/4.jpg">
+		<section class="page-content">
+			<div class="page-content-inner"
+				style="background-image: url(/web/src/main/webapp/mybootstrap/common/img/temp/login/4.jpg)">
 
-<div class="row">
-    <div class="span4 offset3">
-        <t:form t:id="login">
-            <h2>Please sign in</h2>
-            <t:textfield t:id="email" class="input-block-level" validate="required" placeholder="Email address"/>
-            <t:passwordfield t:id="password" class="input-block-level" validate="required" placeholder="Password"/>
-            <t:submit class="btn btn-large btn-primary" value="Sign in"/>
-        </t:form>
-    </div>
-</div>
+				<!-- Login Page -->
+				<div class="single-page-block-header">
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="logo">
+								<a href="javascript: history.back();">
+									<img src="${context:/mybootstrap/common/img/logo.png}" alt="Clean UI Admin Template" />
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="single-page-block">
+					<div class="single-page-block-inner effect-3d-element">
+						<div class="blur-placeholder"><!-- -->
+						</div>
+						<div class="single-page-block-form">
+							<h3 class="text-center">
+								<i class="icmn-enter margin-right-10"></i>
+								Login
+							</h3>
+							<div class="row">
+								<div class="span4 offset3">
+									<t:form t:id="login">
+										<h2>Please sign in</h2>
+										<t:textfield t:id="email" class="input-block-level"
+											validate="required" placeholder="Email address" />
+										<t:passwordfield t:id="password" class="input-block-level"
+											validate="required" placeholder="Password" />
+										<t:submit class="btn btn-large btn-primary" value="Sign in" />
+									</t:form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
+		</section>
+
+		<div class="main-backdrop"><!-- -->
+		</div>
+	</body>
 </html>

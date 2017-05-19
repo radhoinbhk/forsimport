@@ -5,18 +5,29 @@
 		from Layout.tml -->
 
 	<!-- Main hero unit for a primary marketing message or call to action -->
+	<div class="content-area p-y-1">
+		<div class="container-fluid">
+			<div class="box box-block bg-white">
+				<div class="row">
+					<t:form class="form-inline">
+						<div class="col-md-6 offset-md-3">
 
-	<t:form class="form-inline">
-		<div class="form-group">
-			<t:errors />
-			<h3>${message:select_table_name}</h3>
-			<input t:type="textfield" class="form-control" t:id="table"
-				value="tableName" validate="required"/>
-			<h3>${message:select_file}</h3>
-			<input t:type="upload" class="form-control" t:id="file"
-				t:value="file" validate="required" />
-			<input t:type="submit" class="form-control" t:id="upload"
-				t:value="Upload" />
+							<t:errors />
+							<h4>${message:select_table_name}</h4>
+							<!-- <input t:type="textfield" class="form-control" t:id="table" -->
+							<!-- value="tableName" validate="required" /> -->
+<!-- 							<div class="col-sm-3"> -->
+								<t:textfield t:id="tableName" t:mixins="autocomplete" placeholder="table name"/>
+<!-- 							</div> -->
+							<h4>${message:select_file}</h4>
+							<input t:type="upload" class="dropify" t:id="file" t:value="file"
+								validate="required" />
+							<input t:type="submit" class="form-control" t:id="upload"
+								t:value="Upload" />
+						</div>
+					</t:form>
+				</div>
+			</div>
 		</div>
-	</t:form>
+	</div>
 </html>

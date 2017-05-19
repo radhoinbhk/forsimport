@@ -6,20 +6,26 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.tapestry5.StreamResponse;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.ioc.annotations.Inject;
 
 import com.leoni.forsimport.dao.TableDAO;
 import com.leoni.forsimport.model.Column;
 import com.leoni.forsimport.model.Table;
 import com.leoni.forsimport.services.ExcelStreamResponse;
+import com.leoni.forsimport.services.TabNames;
 
 public class Export {
 	private static final Logger LOG = Logger.getLogger(Export.class);
@@ -31,7 +37,23 @@ public class Export {
 	/**
 	 * 
 	 */
+	@Inject
+    private TabNames tableNames;
 
+    // The code
+    List<String> onProvideCompletionsFromtableName(String partial) {
+    	List<String> matches = new ArrayList<String>();
+        partial = partial.toUpperCase();
+
+        for (String countryName : tableNames.getTableNames()) {
+            if (countryName.toUpperCase().contains(partial)) {
+                matches.add(countryName);
+            }
+        }
+
+        return matches;
+    }
+    
 	public StreamResponse onSelectedFromExport() {
 		LOG.info("Start");
 		TableDAO dao = new TableDAO();
@@ -55,11 +77,15 @@ public class Export {
 		Row rowName = feuille.createRow((short) 0);
 		Row rowType = feuille.createRow((short) 1);
 		Column column = new Column();
+		CellStyle colorCellStyle = wb.createCellStyle();
+		colorCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		colorCellStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
 		for (int i = 0; i < columns.size(); i++) {
 			column = columns.get(i);
 			// 4. COLUMN_NAME
 			Cell columnName = rowName.createCell(i);
 			columnName.setCellValue(column.getColumnName());
+			columnName.setCellStyle(colorCellStyle);
 			// 5. COLUMN_Type
 			Cell colulnType = rowType.createCell(i);
 			colulnType.setCellValue(column.getColumnType());

@@ -1,6 +1,9 @@
 package com.leoni.forsimport.pages;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -10,11 +13,13 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.upload.services.UploadedFile;
 
 import com.leoni.forsimport.model.Error;
 import com.leoni.forsimport.model.VerifyExcelFile;
 import com.leoni.forsimport.services.ExcelStreamResponse;
+import com.leoni.forsimport.services.TabNames;
 import com.monitorjbl.xlsx.StreamingReader;
 
 /**
@@ -31,6 +36,25 @@ public class Import {
 	private UploadedFile file;
 	Error error = new Error();
 
+	
+	 // Generally useful bits and pieces
+    @Inject
+    private TabNames tableNames;
+
+    // The code
+    List<String> onProvideCompletionsFromtableName(String partial) {
+    	List<String> matches = new ArrayList<String>();
+        partial = partial.toUpperCase();
+
+        for (String countryName : tableNames.getTableNames()) {
+            if (countryName.toUpperCase().contains(partial)) {
+                matches.add(countryName);
+            }
+        }
+
+        return matches;
+    }
+    
 	/**
 	 * @return
 	 * 

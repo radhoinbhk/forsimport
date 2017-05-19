@@ -3,7 +3,7 @@ package com.leoni.forsimport.model;
 public class Column {
 
 	private String columnName;
-	String columnType;
+	private String columnType;
 	private int nullable;
 	private boolean primaryKey;
 	private boolean defaultValue;

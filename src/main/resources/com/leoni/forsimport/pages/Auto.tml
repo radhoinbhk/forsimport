@@ -8,6 +8,7 @@
 	<br />
 	<div class="eg">
 		<t:form class="form-horizontal">
+		<div class="col-md-6 offset-md-3">
 			<div class="form-group">
 				<t:label for="tableName" class="col-sm-3">
 					Type in a table name:
@@ -15,6 +16,7 @@
 				<div class="col-sm-3">
 					<t:textfield t:id="tableName" t:mixins="autocomplete" />
 				</div>
+			</div>
 			</div>
 		</t:form>
 	</div>

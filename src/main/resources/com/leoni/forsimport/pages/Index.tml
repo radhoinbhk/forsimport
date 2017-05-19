@@ -1,9 +1,19 @@
 <html t:type="layout" title="application Index"
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd">
 
-	<!-- Most of the page content, including <head>, <body>, etc. tags, comes 
-		from Layout.tml -->
-	<!-- Main hero unit for a primary marketing message or call to action -->
-	<h1>${message:select_file_index}</h1>
+	<div class="content-area p-y-1">
+		<div class="container-fluid">
+			<div class="box box-block bg-white">
+				<div class="row">
+					<div class="col-md-6 offset-md-3">
+						<!-- Most of the page content, including <head>, <body>, etc. tags, 
+							comes from Layout.tml -->
+						<!-- Main hero unit for a primary marketing message or call to action -->
+						<h1>${message:select_file_index}</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </html>

@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 
 import com.leoni.forsimport.model.Column;
 import com.leoni.forsimport.model.Table;
+import com.leoni.forsimport.model.User;
 
 public class TableDAO {
 
@@ -49,12 +50,12 @@ public class TableDAO {
 		try {
 			Connection connexion = getConnection();
 			Statement stmt = connexion.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from " + tableName + " limit 1");
+			ResultSet rs = stmt.executeQuery("select * from " + tableName /*+ " limit 1"*/);
 			ResultSetMetaData rsmd = rs.getMetaData();
 			ArrayList<Column> columns = new ArrayList<Column>();
 
 			/* get the column name of the primary key */
-			ResultSet pkColumns = connexion.getMetaData().getPrimaryKeys(null, null, "test");
+			ResultSet pkColumns = connexion.getMetaData().getPrimaryKeys(null, null, tableName);
 			String pkColumnName = null;
 			while (pkColumns.next()) {
 				pkColumnName = pkColumns.getString("COLUMN_NAME");
@@ -88,5 +89,27 @@ public class TableDAO {
 		}
 
 		return table;
+	}
+	public ArrayList<User> getUser(){
+		ArrayList<User> users = new ArrayList<>();
+		try {
+			User user = new User();
+			Connection connexion = getConnection();
+			Statement stmt = connexion.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from users");
+			int i=0;
+			while(rs.next()){
+				i++;
+			user.setEmailUser(rs.getString("emailuser"));
+			user.setMdpUser(rs.getString("mdpuser"));
+			user.setTypeUser(rs.getString("typeuser"));
+			users.add(user);
+			}
+			connexion.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return users;
 	}
 }

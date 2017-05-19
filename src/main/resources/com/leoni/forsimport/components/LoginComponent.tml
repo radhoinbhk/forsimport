@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd">
+	<head>
+		<meta charset="utf-8" />
+		<title>${title}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+		<!-- Fav and touch icons -->
+		<link rel="shortcut icon" href="${asset:context:/favicon.ico}" />
+		<link href="${context:mybootstrap/vendor/bootstrap/css/bootstrap.min.css}"
+			rel="stylesheet" type="text/css" />
+		<link href="${context:mybootstrap/vendor/themify-icons/themify-icons.css}"
+			rel="stylesheet" type="text/css" />
+		<link
+			href="${context:mybootstrap/vendor/font-awesome/css/font-awesome.min.css}"
+			rel="stylesheet" type="text/css" />
+		<link href="${context:mybootstrap/vendor/animate.css/animate.min.css}"
+			rel="stylesheet" type="text/css" />
+		<link
+			href="${context:mybootstrap/vendor/jscrollpane/jquery.jscrollpane.css}"
+			rel="stylesheet" type="text/css" />
+		<link href="${context:mybootstrap/vendor/waves/waves.min.css}"
+			rel="stylesheet" type="text/css" />
+		<link href="${context:mybootstrap/vendor/chartist/chartist.min.css}"
+			rel="stylesheet" type="text/css" />
+		<link href="${context:mybootstrap/vendor/switchery/dist/switchery.min.css}"
+			rel="stylesheet" type="text/css" />
+		<link href="${context:mybootstrap/vendor/morris/morris.css}" rel="stylesheet"
+			type="text/css" />
+		<link
+			href="${context:mybootstrap/vendor/jvectormap/jquery-jvectormap-2.0.3.css}"
+			rel="stylesheet" type="text/css" />
+		<link href="${context:mybootstrap/vendor/dropify/dist/css/dropify.min.css}"
+			rel="stylesheet" type="text/css" />
+		<!-- Neptune CSS -->
+		<link href="${context:mybootstrap/css/core.css}" rel="stylesheet"
+			type="text/css" />
+
+		<!-- vendor Styles -->
+		<!-- v1.0.0 -->
+		<link href="${context:mybootstrap/vendor/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet"
+			type="text/css" />
+			<!-- Clean UI Styles -->
+			<link href="${context:mybootstrap/common/css/source/main.css}" rel="stylesheet"
+			type="text/css" />
+			 <!-- vendor Scripts -->
+    <!-- v1.0.0 -->
+    <script src="/web/src/main/webapp/mybootstrap/vendor/jquery/jquery.min.js"></script>
+    <script src="/web/src/main/webapp/mybootstrap/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/web/src/main/webapp/mybootstrap/vendor/html5-form-validation/dist/jquery.validation.min.js"></script>
+    <script src="/web/src/main/webapp/mybootstrap/vendor/bootstrap-show-password/bootstrap-show-password.min.js"></script>
+
+   
+    <!-- v1.1.1 -->
+    <script src="/web/src/main/webapp/mybootstrap/vendor/gsap/src/minified/TweenMax.min.js"></script>
+
+    <!-- Clean UI Scripts -->
+    <script src="/web/src/main/webapp/mybootstrap/common/js/common.js"></script>
+    <script src="/web/src/main/webapp/mybootstrap/common/js/demo.temp.js"></script>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="span12">
+					<t:alerts />
+				</div>
+			</div>
+		</div>
+
+		<div class="site-content">
+
+			<t:body />
+
+			<hr />
+		</div>
+
+	</body>
+</html>

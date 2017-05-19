@@ -1,20 +1,56 @@
+<!-- <html t:type="layout" title="Export" -->
+<!-- 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"> -->
+
+<!-- 	<div class="content-area p-y-1"> -->
+<!-- 		<div class="container-fluid"> -->
+<!-- 			<div class="box box-block bg-white"> -->
+<!-- 				<div class="row"> -->
+<!-- 					<t:form class="form-inline"> -->
+<!-- 					<div class="col-md-6 offset-md-3"> -->
+<!-- 						<div class="form-group"> -->
+<!-- 							<t:errors /> -->
+<!-- 							<label t:type="label" for="table" /> -->
+<!-- 							<input t:type="textfield" class="form-control" t:id="table" -->
+<!-- 								value="tableName" validate="required" /> -->
+<!-- 							<input t:type="submit" t:id="Export" class="form-control" -->
+<!-- 								t:value="Insert" /> -->
+<!-- 						</div> -->
+<!-- 						<br /> -->
+<!-- 						</div> -->
+<!-- 					</t:form> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </html> -->
 <html t:type="layout" title="Export"
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd">
+
 	<!-- Most of the page content, including <head>, <body>, etc. tags, comes 
 		from Layout.tml -->
 	<!-- Main hero unit for a primary marketing message or call to action -->
 	<h3>${message:select_file_T} </h3>
 	<br />
-	<t:form class="form-inline">
-
-		<div class="form-group">
-			<t:errors />
-			<label t:type="label" for="table" />
-			<input t:type="textfield" class="form-control" t:id="table"
-				value="tableName" validate="required" />
-			<input t:type="submit" t:id="Export" class="form-control"
-				t:value="Insert" />
-		</div>
-		<br />
-	</t:form>
+	<div class="content-area p-y-1">
+		<div class="container-fluid">
+			<div class="box box-block bg-white">
+				<div class="row">
+		<t:form class="form-inline">
+			<div class="col-md-6 offset-md-3">
+				<div class="form-group">
+					<t:label for="tableName" class="col-sm-3">
+						Type in a table name:
+					</t:label>
+					<div class="col-sm-3">
+						<t:textfield t:id="tableName" t:mixins="autocomplete" placeholder="table name"/>
+						<input t:type="submit" t:id="Export" class="form-control"
+						t:value="Insert" />
+					</div>
+				</div>
+			</div>
+		</t:form>
+	</div>
+	</div>
+	</div>
+	</div>
 </html>

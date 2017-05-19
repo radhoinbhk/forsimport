@@ -9,40 +9,143 @@
 		<meta name="author" content="" />
 		<!-- Fav and touch icons -->
 		<link rel="shortcut icon" href="${asset:context:/favicon.ico}" />
+		<link href="${context:mybootstrap/vendor/bootstrap/css/bootstrap.min.css}"
+			rel="stylesheet" type="text/css" />
+		<link href="${context:mybootstrap/vendor/themify-icons/themify-icons.css}"
+			rel="stylesheet" type="text/css" />
+		<link
+			href="${context:mybootstrap/vendor/font-awesome/css/font-awesome.min.css}"
+			rel="stylesheet" type="text/css" />
+		<link href="${context:mybootstrap/vendor/animate.css/animate.min.css}"
+			rel="stylesheet" type="text/css" />
+		<link
+			href="${context:mybootstrap/vendor/jscrollpane/jquery.jscrollpane.css}"
+			rel="stylesheet" type="text/css" />
+		<link href="${context:mybootstrap/vendor/waves/waves.min.css}"
+			rel="stylesheet" type="text/css" />
+		<link href="${context:mybootstrap/vendor/chartist/chartist.min.css}"
+			rel="stylesheet" type="text/css" />
+		<link href="${context:mybootstrap/vendor/switchery/dist/switchery.min.css}"
+			rel="stylesheet" type="text/css" />
+		<link href="${context:mybootstrap/vendor/morris/morris.css}" rel="stylesheet"
+			type="text/css" />
+		<link
+			href="${context:mybootstrap/vendor/jvectormap/jquery-jvectormap-2.0.3.css}"
+			rel="stylesheet" type="text/css" />
+		<link href="${context:mybootstrap/vendor/dropify/dist/css/dropify.min.css}"
+			rel="stylesheet" type="text/css" />
+		<!-- Neptune CSS -->
+		<link href="${context:mybootstrap/css/core.css}" rel="stylesheet"
+			type="text/css" />
+
+		<!-- vendor Styles -->
+		<!-- v1.0.0 -->
+		<link
+			href="${context:mybootstrap/vendor/bootstrap/dist/css/bootstrap.min.css}"
+			rel="stylesheet" type="text/css" />
+		<!-- Clean UI Styles -->
+		<link href="${context:mybootstrap/common/css/source/main.css}"
+			rel="stylesheet" type="text/css" />
+		<!-- vendor Scripts -->
+		<!-- v1.0.0 -->
+		<script src="/web/src/main/webapp/mybootstrap/vendor/jquery/jquery.min.js"></script>
+		<script
+			src="/web/src/main/webapp/mybootstrap/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script
+			src="/web/src/main/webapp/mybootstrap/vendor/html5-form-validation/dist/jquery.validation.min.js"></script>
+		<script
+			src="/web/src/main/webapp/mybootstrap/vendor/bootstrap-show-password/bootstrap-show-password.min.js"></script>
+
+
+		<!-- v1.1.1 -->
+		<script
+			src="/web/src/main/webapp/mybootstrap/vendor/gsap/src/minified/TweenMax.min.js"></script>
+
+		<!-- Clean UI Scripts -->
+		<script src="/web/src/main/webapp/mybootstrap/common/js/common.js"></script>
+		<script src="/web/src/main/webapp/mybootstrap/common/js/demo.temp.js"></script>
 	</head>
 
 	<body>
-
-		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<!-- navbar navbar-inverse navbar-fixed-top -->
+		<div class="site-sidebar" role="navigation">
+			<a class="logo" href="#">
+<!-- 				<span class="l-text">LEONI</span> -->
+<!-- 				<span class="l-icon"></span> -->
+				<div><img src="images/logo.png" alt="" /></div>
+			</a>
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse"
 						data-target=".navbar-collapse">
 						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
+						<span class="s-icon">
+							<i class="fa fa-upload"></i>
+						</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 
 					</button>
-					<t:pagelink page="Login" class="navbar-brand">Home</t:pagelink>
+					<!-- <t:pagelink page="Login" class="navbar-brand">Home</t:pagelink> -->
 				</div>
-				<div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
+				<!-- navbar-collapse collapse -->
+				<div class="custom-scroll custom-scroll-light">
+					<!-- nav navbar-nav -->
+					<ul class="sidebar-menu">
 						<t:loop source="pageNames" value="pageName">
-							<t:any element="li" class="prop:classForPageName">
+							<!-- prop:classForPageName -->
+							<t:any element="li" class="with-sub">
 								<t:pagelink page="prop:pageName">${pageName}</t:pagelink>
 							</t:any>
 						</t:loop>
 					</ul>
-					<span class="navbar-right">
-						<li>
-							<t:pagelink page="login" class="btn btn-default navbar-btn">Sign in</t:pagelink>
-						</li>
-					</span>
+					<!-- <span class="navbar-right"> -->
+					<!-- <li> -->
+					<!-- <t:pagelink page="login" class="btn btn-default navbar-btn">Sign 
+						in</t:pagelink> -->
+					<!-- </li> -->
+					<!-- </span> -->
 
-				</div><!--/.nav-collapse -->
+				</div>
 			</div>
+		</div>
+		<div class="site-header">
+			<nav class="navbar navbar-light">
+				<ul class="nav navbar-nav pull-xs-right">
+					<li class="nav-item dropdown">
+						<a class="nav-link" href="#" data-toggle="dropdown"
+							aria-expanded="false">
+							<div class="avatar box-32">
+								<img src="images/dev.png" alt="" />
+							</div>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right animated flipInY">
+							<a class="dropdown-item" href="#">
+								<i class="ti-email m-r-0-5"></i>
+								Inbox
+							</a>
+							<a class="dropdown-item" href="#">
+								<i class="ti-user m-r-0-5"></i>
+								Profile
+							</a>
+							<a class="dropdown-item" href="#">
+								<i class="ti-settings m-r-0-5"></i>
+								Settings
+							</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">
+								<i class="ti-help m-r-0-5"></i>
+								Help
+							</a>
+							<a class="dropdown-item" href="#">
+								<i class="ti-power-off m-r-0-5"></i>
+								Sign out
+							</a>
+						</div>
+					</li>
+				</ul>
+			</nav>
 		</div>
 
 		<div class="container">
@@ -53,7 +156,7 @@
 			</div>
 		</div>
 
-		<div class="container">
+		<div class="site-content">
 
 			<t:body />
 
@@ -65,7 +168,7 @@
 				</p>
 			</footer>
 
-		</div> <!-- /container -->
+		</div>
 
 	</body>
 </html>
