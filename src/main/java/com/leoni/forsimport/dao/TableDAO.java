@@ -3,6 +3,7 @@ package com.leoni.forsimport.dao;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -50,7 +51,7 @@ public class TableDAO {
 		try {
 			Connection connexion = getConnection();
 			Statement stmt = connexion.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from " + tableName /*+ " limit 1"*/);
+			ResultSet rs = stmt.executeQuery("select * from " + tableName /* + " limit 1" */);
 			ResultSetMetaData rsmd = rs.getMetaData();
 			ArrayList<Column> columns = new ArrayList<Column>();
 
@@ -90,26 +91,64 @@ public class TableDAO {
 
 		return table;
 	}
-	public ArrayList<User> getUser(){
+
+	public ArrayList<User> getUser() {
 		ArrayList<User> users = new ArrayList<>();
+
 		try {
-			User user = new User();
 			Connection connexion = getConnection();
 			Statement stmt = connexion.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from users");
-			int i=0;
-			while(rs.next()){
+			int i = -1;
+			while (rs.next()) {
+				User user = new User();
 				i++;
-			user.setEmailUser(rs.getString("emailuser"));
-			user.setMdpUser(rs.getString("mdpuser"));
-			user.setTypeUser(rs.getString("typeuser"));
-			users.add(user);
+				user.setIdUser(rs.getInt("id"));
+				user.setEmailUser(rs.getString("emailuser"));
+				user.setMdpUser(rs.getString("mdpuser"));
+				user.setProfilUser(rs.getString("typeuser"));
+				users.add(i, user);
 			}
+			connexion.close();
+			return users;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	public void changeUser(User user, int id) {
+		try {
+			Connection connexion = getConnection();
+			String sql = "UPDATE users SET emailuser = ?, typeuser = ?, mdpuser = ? WHERE id = ?";
+			PreparedStatement pstmt = connexion.prepareStatement(sql);
+			pstmt.setString(1, user.getEmailUser());
+			pstmt.setString(2, user.getProfilUser());
+			pstmt.setString(3, user.getMdpUser());
+			pstmt.setInt(4, user.getIdUser());
+			pstmt.executeUpdate();
 			connexion.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return users;
+	}
+
+	public String getProfilUser(String Email) {
+		try {
+			Connection connexion = getConnection();
+			PreparedStatement statement = connexion.prepareStatement("select typeuser from users WHERE emailuser = ?");
+			statement.setString(1, Email);
+			ResultSet resultSet = statement.executeQuery();
+			connexion.close();
+			return resultSet.getString(0);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 }

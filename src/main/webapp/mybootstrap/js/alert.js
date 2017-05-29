@@ -1,94 +1,231 @@
-/* ========================================================================
- * Bootstrap: alert.js v3.3.4
- * http://getbootstrap.com/javascript/#alerts
- * ========================================================================
- * Copyright 2011-2015 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
+'use strict';
 
+var _createClass = (function() {
+	function defineProperties(target, props) {
+		for (var i = 0; i < props.length; i++) {
+			var descriptor = props[i];
+			descriptor.enumerable = descriptor.enumerable || false;
+			descriptor.configurable = true;
+			if ('value' in descriptor)
+				descriptor.writable = true;
+			Object.defineProperty(target, descriptor.key, descriptor);
+		}
+	}
+	return function(Constructor, protoProps, staticProps) {
+		if (protoProps)
+			defineProperties(Constructor.prototype, protoProps);
+		if (staticProps)
+			defineProperties(Constructor, staticProps);
+		return Constructor;
+	};
+})();
 
-+function ($) {
-  'use strict';
+function _classCallCheck(instance, Constructor) {
+	if (!(instance instanceof Constructor)) {
+		throw new TypeError('Cannot call a class as a function');
+	}
+}
 
-  // ALERT CLASS DEFINITION
-  // ======================
+/**
+ * --------------------------------------------------------------------------
+ * Bootstrap (v4.0.0-alpha.2): alert.js Licensed under MIT
+ * (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * --------------------------------------------------------------------------
+ */
 
-  var dismiss = '[data-dismiss="alert"]'
-  var Alert   = function (el) {
-    $(el).on('click', dismiss, this.close)
-  }
+var Alert = (function($) {
 
-  Alert.VERSION = '3.3.4'
+	/**
+	 * ------------------------------------------------------------------------
+	 * Constants
+	 * ------------------------------------------------------------------------
+	 */
 
-  Alert.TRANSITION_DURATION = 150
+	var NAME = 'alert';
+	var VERSION = '4.0.0-alpha';
+	var DATA_KEY = 'bs.alert';
+	var EVENT_KEY = '.' + DATA_KEY;
+	var DATA_API_KEY = '.data-api';
+	var JQUERY_NO_CONFLICT = $.fn[NAME];
+	var TRANSITION_DURATION = 150;
 
-  Alert.prototype.close = function (e) {
-    var $this    = $(this)
-    var selector = $this.attr('data-target')
+	var Selector = {
+		DISMISS : '[data-dismiss="alert"]'
+	};
 
-    if (!selector) {
-      selector = $this.attr('href')
-      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
-    }
+	var Event = {
+		CLOSE : 'close' + EVENT_KEY,
+		CLOSED : 'closed' + EVENT_KEY,
+		CLICK_DATA_API : 'click' + EVENT_KEY + DATA_API_KEY
+	};
 
-    var $parent = $(selector)
+	var ClassName = {
+		ALERT : 'alert',
+		FADE : 'fade',
+		IN : 'in'
+	};
 
-    if (e) e.preventDefault()
+	/**
+	 * ------------------------------------------------------------------------
+	 * Class Definition
+	 * ------------------------------------------------------------------------
+	 */
 
-    if (!$parent.length) {
-      $parent = $this.closest('.alert')
-    }
+	var Alert = (function() {
+		function Alert(element) {
+			_classCallCheck(this, Alert);
 
-    $parent.trigger(e = $.Event('close.bs.alert'))
+			this._element = element;
+		}
 
-    if (e.isDefaultPrevented()) return
+		/**
+		 * ------------------------------------------------------------------------
+		 * Data Api implementation
+		 * ------------------------------------------------------------------------
+		 */
 
-    $parent.removeClass('in')
+		// getters
+		_createClass(
+				Alert,
+				[
+						{
+							key : 'close',
 
-    function removeElement() {
-      // detach from parent, fire event then clean up data
-      $parent.detach().trigger('closed.bs.alert').remove()
-    }
+							// public
 
-    $.support.transition && $parent.hasClass('fade') ?
-      $parent
-        .one('bsTransitionEnd', removeElement)
-        .emulateTransitionEnd(Alert.TRANSITION_DURATION) :
-      removeElement()
-  }
+							value : function close(element) {
+								element = element || this._element;
 
+								var rootElement = this._getRootElement(element);
+								var customEvent = this
+										._triggerCloseEvent(rootElement);
 
-  // ALERT PLUGIN DEFINITION
-  // =======================
+								if (customEvent.isDefaultPrevented()) {
+									return;
+								}
 
-  function Plugin(option) {
-    return this.each(function () {
-      var $this = $(this)
-      var data  = $this.data('bs.alert')
+								this._removeElement(rootElement);
+							}
+						},
+						{
+							key : 'dispose',
+							value : function dispose() {
+								$.removeData(this._element, DATA_KEY);
+								this._element = null;
+							}
 
-      if (!data) $this.data('bs.alert', (data = new Alert(this)))
-      if (typeof option == 'string') data[option].call($this)
-    })
-  }
+						// private
 
-  var old = $.fn.alert
+						},
+						{
+							key : '_getRootElement',
+							value : function _getRootElement(element) {
+								var selector = Util
+										.getSelectorFromElement(element);
+								var parent = false;
 
-  $.fn.alert             = Plugin
-  $.fn.alert.Constructor = Alert
+								if (selector) {
+									parent = $(selector)[0];
+								}
 
+								if (!parent) {
+									parent = $(element).closest(
+											'.' + ClassName.ALERT)[0];
+								}
 
-  // ALERT NO CONFLICT
-  // =================
+								return parent;
+							}
+						},
+						{
+							key : '_triggerCloseEvent',
+							value : function _triggerCloseEvent(element) {
+								var closeEvent = $.Event(Event.CLOSE);
 
-  $.fn.alert.noConflict = function () {
-    $.fn.alert = old
-    return this
-  }
+								$(element).trigger(closeEvent);
+								return closeEvent;
+							}
+						},
+						{
+							key : '_removeElement',
+							value : function _removeElement(element) {
+								$(element).removeClass(ClassName.IN);
 
+								if (!Util.supportsTransitionEnd()
+										|| !$(element).hasClass(ClassName.FADE)) {
+									this._destroyElement(element);
+									return;
+								}
 
-  // ALERT DATA-API
-  // ==============
+								$(element).one(
+										Util.TRANSITION_END,
+										$.proxy(this._destroyElement, this,
+												element)).emulateTransitionEnd(
+										TRANSITION_DURATION);
+							}
+						},
+						{
+							key : '_destroyElement',
+							value : function _destroyElement(element) {
+								$(element).detach().trigger(Event.CLOSED)
+										.remove();
+							}
 
-  $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
+						// static
 
-}(jQuery);
+						} ], [ {
+					key : '_jQueryInterface',
+					value : function _jQueryInterface(config) {
+						return this.each(function() {
+							var $element = $(this);
+							var data = $element.data(DATA_KEY);
+
+							if (!data) {
+								data = new Alert(this);
+								$element.data(DATA_KEY, data);
+							}
+
+							if (config === 'close') {
+								data[config](this);
+							}
+						});
+					}
+				}, {
+					key : '_handleDismiss',
+					value : function _handleDismiss(alertInstance) {
+						return function(event) {
+							if (event) {
+								event.preventDefault();
+							}
+
+							alertInstance.close(this);
+						};
+					}
+				}, {
+					key : 'VERSION',
+					get : function get() {
+						return VERSION;
+					}
+				} ]);
+
+		return Alert;
+	})();
+
+	$(document).on(Event.CLICK_DATA_API, Selector.DISMISS,
+			Alert._handleDismiss(new Alert()));
+
+	/**
+	 * ------------------------------------------------------------------------
+	 * jQuery
+	 * ------------------------------------------------------------------------
+	 */
+
+	$.fn[NAME] = Alert._jQueryInterface;
+	$.fn[NAME].Constructor = Alert;
+	$.fn[NAME].noConflict = function() {
+		$.fn[NAME] = JQUERY_NO_CONFLICT;
+		return Alert._jQueryInterface;
+	};
+
+	return Alert;
+})(jQuery);
+//# sourceMappingURL=alert.js.map

@@ -413,14 +413,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.apache.catalina.connector.OutputBuffer;
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -437,14 +435,10 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import com.google.protobuf.ByteString.Output;
 import com.leoni.forsimport.dao.TableDAO;
 import com.leoni.forsimport.model.Column;
 import com.leoni.forsimport.model.Table;
 import com.leoni.forsimport.pages.Import;
-import com.leoni.forsimport.services.ExcelStreamResponse;
 import com.monitorjbl.xlsx.StreamingReader;
 
 public class Test {

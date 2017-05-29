@@ -27,7 +27,7 @@ import com.leoni.forsimport.model.Table;
 import com.leoni.forsimport.services.ExcelStreamResponse;
 import com.leoni.forsimport.services.TabNames;
 
-public class Export {
+public class Export extends BasePage {
 	private static final Logger LOG = Logger.getLogger(Export.class);
 
 	@Property

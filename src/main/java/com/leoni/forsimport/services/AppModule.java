@@ -80,6 +80,8 @@ public class AppModule {
 		configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER, "jquery");
 		configuration.add(SymbolConstants.BOOTSTRAP_ROOT, "context:mybootstrap");
 		configuration.add(SymbolConstants.MINIFICATION_ENABLED, true);
+		configuration.add(SymbolConstants.COMPRESS_WHITESPACE, false);
+		configuration.add(SymbolConstants.START_PAGE_NAME, "com.leoni.forsimport.pages.Import");
 	}
 
 	/**

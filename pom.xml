@@ -10,6 +10,21 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-beanvalidator</artifactId>
+			<version>5.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-hibernate</artifactId>
+			<version>${tapestry-release-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>2.3.2</version>
+		</dependency>
 		<!-- To set up an application with a database, change the artifactId below 
 			to tapestry-hibernate, and add a dependency on your JDBC driver. You'll also 
 			need to add Hibernate configuration files, such as hibernate.cfg.xml. -->
@@ -48,22 +63,16 @@
 			plugin (which runs the tests) will fail, preventing Maven from packaging 
 			the WAR. Tapestry includes a large number of testing facilities designed 
 			for use with TestNG (http://testng.org/), so it's recommended. -->
-		<!--
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>${testng-release-version}</version>
-			<scope>test</scope>
-		</dependency>
-		-->
-		
+		<!-- <dependency> <groupId>org.testng</groupId> <artifactId>testng</artifactId> 
+			<version>${testng-release-version}</version> <scope>test</scope> </dependency> -->
+
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
-		    <groupId>junit</groupId>
-		    <artifactId>junit</artifactId>
-		    <version>4.12</version>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
 		</dependency>
-		
+
 
 		<dependency>
 			<groupId>org.apache.tapestry</groupId>
@@ -116,14 +125,13 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.15</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-<dependency>
-    <groupId>org.apache.commons</groupId>
-    <artifactId>commons-lang3</artifactId>
-    <version>3.0</version>
-</dependency>
-		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.0</version>
+		</dependency>
 
 	</dependencies>
 	<build>
@@ -174,7 +182,7 @@
 					</systemProperties>
 				</configuration>
 			</plugin>
-		
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -190,7 +198,7 @@
 			<!-- </includes> -->
 			<!-- </resource> -->
 		</resources>
-	
+
 	</build>
 
 	<reporting />
@@ -215,5 +223,5 @@
 		<testng-release-version>6.8.21</testng-release-version>
 		<slf4j-release-version>1.7.19</slf4j-release-version>
 	</properties>
-	
+
 </project>

@@ -100,7 +100,7 @@ public class VerifyExcelFile {
 			}
 		}
 		if (isOkExcelStyle(sheet)) {
-			// insert(sheet, fileName);
+			 insert(sheet, fileName);
 		}
 		try {
 			FileOutputStream out = new FileOutputStream(fileOut);
@@ -132,6 +132,11 @@ public class VerifyExcelFile {
 			 * catch (InterruptedException e) { LOG.error("Unknown error", e);
 			 * return null; }
 			 */
+	}
+
+	private void insert(Sheet sheet, String fileName) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private boolean isOkExcelStyle(Sheet sheet) {
