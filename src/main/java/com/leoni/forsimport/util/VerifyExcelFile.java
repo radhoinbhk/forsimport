@@ -1,4 +1,4 @@
-package com.leoni.forsimport.model;
+package com.leoni.forsimport.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,6 +34,8 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.leoni.forsimport.dao.TableDAO;
+import com.leoni.forsimport.model.Column;
+import com.leoni.forsimport.model.Table;
 import com.leoni.forsimport.pages.Import;
 import com.leoni.forsimport.services.ExcelStreamResponse;
 import com.monitorjbl.xlsx.StreamingReader;

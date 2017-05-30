@@ -1,45 +1,52 @@
 .eg {
-                margin: 20px 0;
-                padding: 14px;
-                border: 1px solid #ddd;
-                border-radius: 6px;
-                -webkit-border-radius: 6px;
-                -mox-border-radius: 6px;
+	margin: 20px 0;
+	padding: 14px;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-mox-border-radius: 6px;
+	height: 219px; width : 961px; left : 301px;
+	position: fixed;
+	bottom: 285px;
+	right: 398px;
+	width: 586px;
+	width: 961px;
+	left: 301px;
 }
 
 .inner {
-                border-collapse: collapse;
-                border-spacing: 0;
-                font-size: inherit;
-                width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: inherit;
+	width: 100%;
 }
 
 .inner>thead>tr>th {
-                padding: 3px 5px;
-                width: 130px;
-                text-align: left;
+	padding: 3px 5px;
+	width: 130px;
+	text-align: left;
 }
 
 .inner>tbody>tr>td {
-                padding: 3px 5px;
-                width: 130px;
-                text-align: left;
+	padding: 3px 5px;
+	width: 130px;
+	text-align: left;
 }
 
 .inner div.alert h4 {
-                display: none;
+	display: none;
 }
 
 .inner div.alert ul {
-                list-style: none;
+	list-style: none;
 }
 
 .inner div.alert li {
-                text-align: center;
+	text-align: center;
 }
 
 .js-required {
-                color: red;
-                display: block;
-                margin-bottom: 14px;
+	color: red;
+	display: block;
+	margin-bottom: 14px;
 }

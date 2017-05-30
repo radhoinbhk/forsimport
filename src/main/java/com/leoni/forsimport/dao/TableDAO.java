@@ -1,6 +1,7 @@
 package com.leoni.forsimport.dao;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,7 +10,10 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
@@ -92,7 +96,7 @@ public class TableDAO {
 		return table;
 	}
 
-	public ArrayList<User> getUser() {
+	public ArrayList<User> getUsers() {
 		ArrayList<User> users = new ArrayList<>();
 
 		try {
@@ -106,7 +110,7 @@ public class TableDAO {
 				user.setIdUser(rs.getInt("id"));
 				user.setEmailUser(rs.getString("emailuser"));
 				user.setMdpUser(rs.getString("mdpuser"));
-				user.setProfilUser(rs.getString("typeuser"));
+				user.setTypeUser(rs.getString("typeuser"));
 				users.add(i, user);
 			}
 			connexion.close();
@@ -125,7 +129,7 @@ public class TableDAO {
 			String sql = "UPDATE users SET emailuser = ?, typeuser = ?, mdpuser = ? WHERE id = ?";
 			PreparedStatement pstmt = connexion.prepareStatement(sql);
 			pstmt.setString(1, user.getEmailUser());
-			pstmt.setString(2, user.getProfilUser());
+			pstmt.setString(2, user.getTypeUser());
 			pstmt.setString(3, user.getMdpUser());
 			pstmt.setInt(4, user.getIdUser());
 			pstmt.executeUpdate();
@@ -150,5 +154,35 @@ public class TableDAO {
 			return null;
 		}
 
+	}
+
+	public void addUser(User user) {
+		// TODO Auto-generated method stub
+		try{
+			Connection connexion = getConnection();
+		     PreparedStatement prepare = connexion.prepareStatement("INSERT INTO parrain VALUES(null,?,?,?)");
+		     prepare.setString (1, user.getEmailUser());
+		     prepare.setString(2, user.getTypeUser());
+		     String password = createRandomCode(10, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+		     prepare.setString (3,password);
+		 
+		     prepare.executeUpdate();
+		}catch(Exception e){
+		     // Message
+		}
+	}
+	
+	/*
+	 * the methode creat a new password
+	 * */
+	public String createRandomCode(int codeLength, String id) {   
+	    List<Character> temp = id.chars()
+	            .mapToObj(i -> (char)i)
+	            .collect(Collectors.toList());
+	    Collections.shuffle(temp, new SecureRandom());
+	    return temp.stream()
+	            .map(Object::toString)
+	            .limit(codeLength)
+	            .collect(Collectors.joining());
 	}
 }

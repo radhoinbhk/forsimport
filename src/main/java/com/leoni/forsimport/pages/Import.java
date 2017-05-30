@@ -13,7 +13,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.upload.services.UploadedFile;
 
 import com.leoni.forsimport.model.Error;
-import com.leoni.forsimport.model.VerifyExcelFile;
+import com.leoni.forsimport.util.VerifyExcelFile;
 import com.leoni.forsimport.services.ExcelStreamResponse;
 import com.leoni.forsimport.services.TabNames;
 import com.monitorjbl.xlsx.StreamingReader;

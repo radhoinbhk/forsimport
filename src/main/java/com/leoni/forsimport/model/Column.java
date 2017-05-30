@@ -12,6 +12,7 @@ public class Column {
 	private Integer positioncolumn;
 	private Integer scale;
 	private String columnTypeJdbc;
+	private Error error ;
 
 	/**
 	 * @return the columnName
@@ -194,6 +195,21 @@ public class Column {
 	 */
 	public void setColumnTypeJdbc(String columnTypeJdbc) {
 		this.columnTypeJdbc = columnTypeJdbc;
+	}
+	
+	
+	/**
+	 * @return the error
+	 */
+	public Error getError() {
+		return error;
+	}
+
+	/**
+	 * @param error the error to set
+	 */
+	public void setError(Error error) {
+		this.error = error;
 	}
 
 	/*

@@ -27,7 +27,7 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false)
-	private int id;
+	private Integer id;
 
 	@Version
 	@Column(nullable = false)
@@ -41,7 +41,7 @@ public class User implements Serializable {
 	@Column(length = 10, nullable = false)
 	@NotNull
 	@Size(max = 10)
-	private String ProfilUser;
+	private String typeUser;
 
 	@Temporal(TemporalType.DATE)
 	@NotNull
@@ -55,7 +55,7 @@ public class User implements Serializable {
 		buf.append("[");
 		buf.append("id=" + id + DIVIDER);
 		buf.append("emailUser=" + emailUser + DIVIDER);
-		buf.append("typeUser=" + ProfilUser + DIVIDER);
+		buf.append("typeUser=" + typeUser + DIVIDER);
 		buf.append("mdpUser=" + mdpUser);
 		buf.append("]");
 		return buf.toString();
@@ -68,7 +68,7 @@ public class User implements Serializable {
 	public User(String emailUser, String typeUser, String mdpUser) {
 		super();
 		this.emailUser = emailUser;
-		this.ProfilUser = typeUser;
+		this.typeUser = typeUser;
 		this.mdpUser = mdpUser;
 	}
 
@@ -95,11 +95,11 @@ public class User implements Serializable {
 
 	}
 
-	public int getIdUser() {
+	public Integer getIdUser() {
 		return id;
 	}
 	
-	public void setIdUser(int id) {
+	public void setIdUser(Integer id) {
 		this.id = id;
 	}
 	
@@ -111,12 +111,12 @@ public class User implements Serializable {
 		this.emailUser = emailUser;
 	}
 
-	public String getProfilUser() {
-		return ProfilUser;
+	public String getTypeUser() {
+		return typeUser;
 	}
 
-	public void setProfilUser(String typeUser) {
-		this.ProfilUser = ProfilUser;
+	public void setTypeUser(String typeUser) {
+		this.typeUser = typeUser;
 	}
 
 	public String getMdpUser() {
@@ -128,7 +128,7 @@ public class User implements Serializable {
 	}
 
 	public boolean isDeveloper() {
-		return DEVELOPER.equals(ProfilUser);
+		return DEVELOPER.equals(typeUser);
 
 	}
 }

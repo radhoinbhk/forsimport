@@ -2,19 +2,14 @@ package com.leoni.forsimport.pages;
 
 import java.text.DateFormat;
 import java.text.Format;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-
-import javax.ejb.EJB;
-
-import jumpstart.business.domain.person.Person;
-import jumpstart.business.domain.person.Regions;
-import jumpstart.business.domain.person.iface.IPersonFinderServiceLocal;
-import jumpstart.business.domain.person.iface.IPersonManagerServiceLocal;
-import jumpstart.util.ExceptionUtil;
+import java.util.Map;
 
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Zone;
@@ -25,166 +20,202 @@ import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
 
 import com.leoni.forsimport.dao.TableDAO;
 import com.leoni.forsimport.model.User;
+import com.leoni.forsimport.services.ExceptionUtil;
 
-@Import(stylesheet = "css/examples/ajaxformsinaloop.css")
+@Import(stylesheet = "context:mybootstrap/css/ajaxformsinaloop.css")
 public class Control {
-    static private final int MAX_RESULTS = 30;
 
-    // Screen fields
+	// Screen fields
 
-    @Property
-    private List<User> persons;
+	@Property
+	private List<User> persons;
 
-    @Property
-    private User person;
+	@Property
+	@Persist
+	private Map<Integer, User> personsMap;
 
-    @Property
-    private boolean editing;
+	@Property
+	private User user;
 
-    @Property
-    private final String BAD_NAME = "Acme";
+	@Property
+	private boolean editing;
+	
+	@Property
+	private String newIdUser;
+	
+	@Property
+	private String newEmailUser;
+	
+	@Property
+	private String newProfilUser;
+	
+//	@Property
+//	private final String BAD_NAME = "Acme";
 
-    // Work fields
+	// Work fields
 
-    private boolean loadingLoop;
+	private boolean loadingLoop;
 
-    // Generally useful bits and pieces
+	// Generally useful bits and pieces
 
-    @EJB
-    private TableDAO personFinderService;
+	// @EJB
+	// private TableDAO personFinderService;
+	//
+	// @EJB
+	// private TableDAO personManagerService;
 
-    @EJB
-    private TableDAO personManagerService;
+	@InjectComponent
+	private Zone rowZone;
 
-    @InjectComponent
-    private Zone rowZone;
+	@Inject
+	private Request request;
 
-    @Inject
-    private Request request;
+	@Inject
+	private AjaxResponseRenderer ajaxResponseRenderer;
 
-    @Inject
-    private AjaxResponseRenderer ajaxResponseRenderer;
+	@InjectComponent
+	private Form personForm;
+	
+	@InjectComponent
+	private Form newPersonForm;
+	@Inject
+	private Messages messages;
 
-    @InjectComponent
-    private Form personForm;
+	@Inject
+	private Locale currentLocale;
 
-    @Inject
-    private Messages messages;
+	// The code
 
-    @Inject
-    private Locale currentLocale;
+	void onActivate() {
+		loadingLoop = false;
+	}
 
-    // The code
+	void setupRender() {
+		loadingLoop = true;
 
-    void onActivate() {
-        loadingLoop = false;
-    }
+		// Get all persons - ask business service to find them (from the
+		// database)
+		TableDAO dao = new TableDAO();
+		persons = dao.getUsers();
+		personsMap = new HashMap<>();
+		if (persons != null){
+			for (User user : persons) {
+				personsMap.put(user.getIdUser(), user);
+			}
+		}
+	}
 
-    void setupRender() {
-        loadingLoop = true;
+	void onPrepareForRenderFromPersonForm(int personId) {
 
-        // Get all persons - ask business service to find them (from the database)
-        persons = personFinderService.getUser();
-    }
+		// If the loop is being reloaded, the form may have had errors so clear
+		// them just in case.
 
-    void onPrepareForRenderFromPersonForm(Long personId) {
+		if (loadingLoop) {
+			personForm.clearErrors();
+			editing = false;
+		}
 
-        // If the loop is being reloaded, the form may have had errors so clear them just in case.
+		// If the form is valid then we're not redisplaying due to error, so get
+		// the person.
 
-        if (loadingLoop) {
-            personForm.clearErrors();
-            editing = false;
-        }
+		if (personForm.isValid()) {
+			// person = personFinderService.findPerson(personId);
+			user = personsMap.get(personId);
+			// Handle null person in the template.
+		}
+	}
 
-        // If the form is valid then we're not redisplaying due to error, so get the person.
+	void onPrepareForSubmitFromPersonForm(int personId) {
 
-        if (personForm.isValid()) {
-//            person = personFinderService.findPerson(personId);
-        	person = persons.get(personId);
-            // Handle null person in the template.
-        }
-    }
+		// Get objects for the form fields to overlay.
+		user = personsMap.get(personId);
 
-    void onPrepareForSubmitFromPersonForm(Long personId) {
+	}
 
-        // Get objects for the form fields to overlay.
-        person = personFinderService.findPerson(personId);
+	void onValidateFromPersonForm() {
 
-    }
+		// Simulate a server-side validation error: return error if anyone's
+		// first name is BAD_NAME.
 
-    void onValidateFromPersonForm() {
+//		if (person.getEmailUser() != null && person.getEmailUser().equals(BAD_NAME)) {
+//			personForm.recordError("First name must not be " + BAD_NAME + ".");
+//		}
+//
+//		if (person.getIdUser() == 2 && !person.getEmailUser().equals("Mary")) {
+//			personForm.recordError("First name for this person must be Mary.");
+//		}
 
-        // Simulate a server-side validation error: return error if anyone's first name is BAD_NAME.
+		if (personForm.getHasErrors()) {
+			return;
+		}
 
-        if (person.getEmailUser() != null && person.getEmailUser().equals(BAD_NAME)) {
-            personForm.recordError("First name must not be " + BAD_NAME + ".");
-        }
+		try {
+			TableDAO dao = new TableDAO();
+			dao.changeUser(user, user.getIdUser());
+		} catch (Exception e) {
+			// Display the cause. In a real system we would try harder to get a
+			// user-friendly message.
+			personForm.recordError(ExceptionUtil.getRootCause(e));
+		}
 
-        if (person.getIdUser()== 2 && !person.getEmailUser().equals("Mary")) {
-            personForm.recordError("First name for this person must be Mary.");
-        }
+	}
 
-        if (personForm.getHasErrors()) {
-            return;
-        }
+	void onSuccessFromPersonForm() {
 
-        try {
-            personManagerService.changeUser(person, personId);
-        }
-        catch (Exception e) {
-            // Display the cause. In a real system we would try harder to get a user-friendly message.
-            personForm.recordError(ExceptionUtil.getRootCauseMessage(e));
-        }
+		editing = false;
 
-    }
+		if (request.isXHR()) {
+			ajaxResponseRenderer.addRender(rowZone);
+		}
+	}
 
-    void onSuccessFromPersonForm() {
+	void onFailureFromPersonForm() {
 
-        editing = false;
+		editing = true;
 
-        if (request.isXHR()) {
-            ajaxResponseRenderer.addRender(rowZone);
-        }
-    }
+		if (request.isXHR()) {
+			ajaxResponseRenderer.addRender(rowZone);
+		}
+	}
 
-    void onFailureFromPersonForm() {
+	void onToEdit(int personId) {
+		// person = personFinderService.findPerson(personId);
+		user = personsMap.get(personId);
+		editing = true;
 
-        editing = true;
+		if (request.isXHR()) {
+			ajaxResponseRenderer.addRender(rowZone);
+		}
+	}
 
-        if (request.isXHR()) {
-            ajaxResponseRenderer.addRender(rowZone);
-        }
-    }
+	void onCancel(int personId) {
+		// person = personFinderService.findPerson(personId);
+		user = personsMap.get(personId);
+		editing = false;
 
-    void onToEdit(Long personId) {
-        person = personFinderService.findPerson(personId);
-        editing = true;
+		if (request.isXHR()) {
+			ajaxResponseRenderer.addRender(rowZone);
+		}
+	}
+	
+	void onAddUser() {
+		TableDAO dao = new TableDAO();
+		user.setEmailUser(newEmailUser);
+		user.setTypeUser(newProfilUser);
+		dao.addUser(user);
+	}
+	public String getCurrentRowZoneId() {
+		// The id attribute of a row must be the same every time that row asks
+		// for it and unique on the page.
+		return "rowZone_" + user.getIdUser();
+	}
 
-        if (request.isXHR()) {
-            ajaxResponseRenderer.addRender(rowZone);
-        }
-    }
+	public Format getDateFormat() {
+		return DateFormat.getDateInstance(DateFormat.SHORT, currentLocale);
+	}
 
-    void onCancel(Long personId) {
-        person = personFinderService.findPerson(personId);
-        editing = false;
-
-        if (request.isXHR()) {
-            ajaxResponseRenderer.addRender(rowZone);
-        }
-    }
-
-    public String getCurrentRowZoneId() {
-        // The id attribute of a row must be the same every time that row asks for it and unique on the page.
-        return "rowZone_" + person.getIdUser();
-    }
-
-    public Format getDateFormat() {
-        return DateFormat.getDateInstance(DateFormat.SHORT, currentLocale);
-    }
-
-    public boolean isPersonFormHasErrors() {
-        return personForm.getHasErrors();
-    }
+	public boolean isPersonFormHasErrors() {
+		return personForm.getHasErrors();
+	}
 
 }

@@ -16,9 +16,9 @@ import org.slf4j.Logger;
 
 import com.leoni.forsimport.dao.TableDAO;
 import com.leoni.forsimport.model.User;
-@Import(library={"js/jquery.min.js", "js/bootstrap.min.js",
-		"js/jquery.validation.min.js", "js/bootstrap-show-password.min.js",
-		"js/TweenMax.min.js", "js/common.js", "js/demo.temp.js" })
+
+@Import(library = { "js/jquery.min.js", "js/bootstrap.min.js", "js/jquery.validation.min.js",
+		"js/bootstrap-show-password.min.js", "js/TweenMax.min.js", "js/common.js", "js/demo.temp.js" })
 public class Index {
 	@Inject
 	private Logger logger;
@@ -43,10 +43,10 @@ public class Index {
 
 	void onValidateFromLogin() {
 		if (!isEmailUser(email)) {
-			login.recordError(emailField, "Try with user: users@tapestry.apache.org");
+			login.recordError(emailField, "email incorect");
 		}
 		if (!isPasswordUser(password)) {
-			login.recordError(passwordField, "Try with password: Tapestry5");
+			login.recordError(passwordField, "password incorect");
 		}
 	}
 
@@ -55,13 +55,15 @@ public class Index {
 		User user = new User();
 		ArrayList<User> users = new ArrayList<>();
 		TableDAO dao = new TableDAO();
-		users = dao.getUser();
+		users = dao.getUsers();
 		boolean r = false;
-		for (int i = 0; i < users.size(); i++) {
-			user = users.get(i);
-			if (email2.equals(user.getEmailUser())) {
-				r = true;
-				break;
+		if (users != null) {
+			for (int i = 0; i < users.size(); i++) {
+				user = users.get(i);
+				if (email2.equals(user.getEmailUser())) {
+					r = true;
+					break;
+				}
 			}
 		}
 		return r;
@@ -71,14 +73,16 @@ public class Index {
 		User user = new User();
 		ArrayList<User> users = new ArrayList<>();
 		TableDAO dao = new TableDAO();
-		users = dao.getUser();
+		users = dao.getUsers();
 		boolean r = false;
+		if (users != null) {
 		for (int i = 0; i < users.size(); i++) {
 			user = users.get(i);
 			if (password2.equals(user.getMdpUser())) {
 				r = true;
 				break;
 			}
+		}
 		}
 		return r;
 	}
@@ -93,5 +97,5 @@ public class Index {
 		logger.warn("Login error!");
 		alertManager.error("I'm sorry but I can't log you in!");
 	}
-	
+
 }
