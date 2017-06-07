@@ -41,7 +41,7 @@ public class User implements Serializable {
 	@Column(length = 10, nullable = false)
 	@NotNull
 	@Size(max = 10)
-	private String typeUser;
+	private String profilUser;
 
 	@Temporal(TemporalType.DATE)
 	@NotNull
@@ -55,7 +55,7 @@ public class User implements Serializable {
 		buf.append("[");
 		buf.append("id=" + id + DIVIDER);
 		buf.append("emailUser=" + emailUser + DIVIDER);
-		buf.append("typeUser=" + typeUser + DIVIDER);
+		buf.append("typeUser=" + profilUser + DIVIDER);
 		buf.append("mdpUser=" + mdpUser);
 		buf.append("]");
 		return buf.toString();
@@ -65,10 +65,10 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public User(String emailUser, String typeUser, String mdpUser) {
+	public User(String emailUser, String profilUser, String mdpUser) {
 		super();
 		this.emailUser = emailUser;
-		this.typeUser = typeUser;
+		this.profilUser = profilUser;
 		this.mdpUser = mdpUser;
 	}
 
@@ -95,40 +95,64 @@ public class User implements Serializable {
 
 	}
 
-	public Integer getIdUser() {
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
 		return id;
 	}
-	
-	public void setIdUser(Integer id) {
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
+	/**
+	 * @return the emailUser
+	 */
 	public String getEmailUser() {
 		return emailUser;
 	}
 
+	/**
+	 * @param emailUser the emailUser to set
+	 */
 	public void setEmailUser(String emailUser) {
 		this.emailUser = emailUser;
 	}
 
-	public String getTypeUser() {
-		return typeUser;
+	/**
+	 * @return the profilUser
+	 */
+	public String getProfilUser() {
+		return profilUser;
 	}
 
-	public void setTypeUser(String typeUser) {
-		this.typeUser = typeUser;
+	/**
+	 * @param profilUser the profilUser to set
+	 */
+	public void setProfilUser(String profilUser) {
+		this.profilUser = profilUser;
 	}
 
+	/**
+	 * @return the mdpUser
+	 */
 	public String getMdpUser() {
 		return mdpUser;
 	}
 
+	/**
+	 * @param mdpUser the mdpUser to set
+	 */
 	public void setMdpUser(String mdpUser) {
 		this.mdpUser = mdpUser;
 	}
 
 	public boolean isDeveloper() {
-		return DEVELOPER.equals(typeUser);
+		return DEVELOPER.equals(profilUser);
 
 	}
 }

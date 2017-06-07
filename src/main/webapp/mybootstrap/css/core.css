@@ -402,7 +402,7 @@ a:focus, a:hover, a:active {
 }
 
 .site-header .navbar {
-	padding-top: 29px;
+	padding-top: 28px;
 	padding-bottom: 11px;
 	background-color: #fff;
 	border-bottom: 1px solid #ddd;
@@ -7089,8 +7089,8 @@ px
 	border-radius: 50%;
 	height: 159%;
 	position: relative;
-	left: 44px;
-	top: 28px;
+	left: -850px;
+    top: 19px;
 }
 
 .avatar .status {

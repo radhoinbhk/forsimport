@@ -51,7 +51,7 @@ public class Layout {
 		return resources.getPageName().equalsIgnoreCase(pageName) ? "active" : null;
 	}
 	public String[] getPageNames() {
-		return new String[] { "Index", "Import", "Export", "Control" };
+		return new String[] { "Index", "Import", "Export", "Administration" };
 	}
 
 	public boolean isExportPage() {
@@ -62,8 +62,8 @@ public class Layout {
 		return "Import".equals(pageName);
 	}
 	
-	public boolean isControlPage(){
-		return "Control".equals(pageName);
+	public boolean isAdministrationPage(){
+		return "Administration".equals(pageName);
 	}
 //	public String getImgName(){
 //		TableDAO dao = new TableDAO();

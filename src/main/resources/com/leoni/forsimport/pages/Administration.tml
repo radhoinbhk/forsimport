@@ -33,17 +33,17 @@
 								<t:Loop t:source="persons" t:value="user">
 									<tr t:type="zone" t:id="rowZone" id="prop:currentRowZoneId">
 										<td>
-											<t:form t:id="personForm" context="user.IdUser"
-												async="true" validate="user">
+											<t:form t:id="personForm" context="user.Id" async="true"
+												validate="user">
 												<table class="inner">
 													<tbody>
 														<tr>
 															<td>
-																<span t:type="any">${user.IdUser}</span>
+																<span t:type="any">${user.Id}</span>
 
 																<!-- If optimistic locking is not needed then comment out 
 																	this next line. -->
-																<t:hidden value="user.IdUser" />
+																<t:hidden value="user.Id" />
 															</td>
 															<td>
 																<t:if test="!editing">
@@ -56,21 +56,23 @@
 															<td></td>
 															<td>
 																<t:if test="!editing">
-																	${user.TypeUser}
+																	${user.ProfilUser}
 																</t:if>
 																<t:if test="editing">
-																	<t:textfield t:id="TypeUser" value="user.TypeUser" />
+																	<t:textfield t:id="c" value="user.ProfilUser" />
 																</t:if>
 															</td>
 															<td></td>
 															<td>
 																<t:if test="!editing">
-																	<t:eventlink event="toEdit" context="user.IdUser"
+																	<t:eventlink event="toEdit" context="user.Id"
 																		async="true" class="btn btn-default">Edit</t:eventlink>
+																	<t:eventlink event="toDelet" context="user.Id"
+																		async="true" class="btn btn-default">Delet</t:eventlink>
 																</t:if>
 																<t:if test="editing">
 																	<t:submit t:id="save" value="Save" />
-																	<t:eventlink event="cancel" context="user.IdUser"
+																	<t:eventlink event="cancel" context="user.Id"
 																		async="true" class="btn btn-default">Cancel</t:eventlink>
 																</t:if>
 															</td>
@@ -95,10 +97,9 @@
 								<th>
 									<table class="inner">
 										<thead>
-											<t:form t:id="newPersonForm" context="user.IdUser">
+											<t:form t:id="newPersonForm">
 												<tr>
 													<th>
-														<t:textfield t:id="newIdUser" placeholder="id user" />
 													</th>
 													<th>
 														<t:textfield t:id="newEmailUser" placeholder="email user"
@@ -106,12 +107,12 @@
 													</th>
 													<th></th>
 													<th>
-														<t:textfield t:id="newProfilUser" placeholder="profil user" />
+														<t:Select t:id="newProfilUser"
+															t:model="literal:développeur,PPE,Service d'achat" />
 													</th>
 													<th></th>
 													<th>
-														<t:eventlink event="addUser"
-															async="true" class="btn btn-default">add user</t:eventlink>
+														<t:submit value="add User" />
 													</th>
 												</tr>
 											</t:form>

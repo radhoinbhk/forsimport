@@ -70,12 +70,12 @@
 											</div>
 										</t:pagelink>
 									</t:if>
-									<t:if test ="controlPage">
-									<t:pagelink page="prop:pageName">
-										<span class="s-icon">
-											<i class="fa fa-file-text" />
-										</span>
-										<span class="s-text">${pageName}</span>
+									<t:if test="AdministrationPage">
+										<t:pagelink page="prop:pageName">
+											<span class="s-icon">
+												<i class="fa fa-file-text" />
+											</span>
+											<span class="s-text">${pageName}</span>
 										</t:pagelink>
 									</t:if>
 								</t:any>
@@ -90,7 +90,16 @@
 					<ul class="nav navbar-nav pull-xs-right">
 						<li class="nav-item dropdown">
 							<div class="avatar box-32">
-<!-- 								<img src="${ProfilUser}" /> -->
+								<!-- <img src="${ProfilUser}" /> -->
+								<img src="${context:images/dev.png}" />
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+						<div class="lang-eng">
+							<img src="${context:images/flag-eng.png}" />
+							</div>
+							<div class="lang-germ">
+							<img src="${context:images/flag-germ.png}" />
 							</div>
 						</li>
 					</ul>

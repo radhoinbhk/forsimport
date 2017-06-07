@@ -16,11 +16,20 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 
 import com.leoni.forsimport.model.Column;
 import com.leoni.forsimport.model.Table;
 import com.leoni.forsimport.model.User;
 
+/**
+ * class DAO
+ * 
+ */
 public class TableDAO {
 
 	private static final Logger LOG = Logger.getLogger(TableDAO.class);
@@ -30,6 +39,10 @@ public class TableDAO {
 	 * 
 	 * @param table
 	 * @return
+	 */
+
+	/**
+	 * getConnection method return the connection of data base
 	 */
 	public Connection getConnection() {
 		Connection connexion = null;
@@ -50,6 +63,9 @@ public class TableDAO {
 		return connexion;
 	}
 
+	/**
+	 * getTableStructure method Returns the structure of the table "tableName"
+	 */
 	public Table getTableStructure(String tableName) {
 		Table table = new Table();
 		try {
@@ -96,6 +112,11 @@ public class TableDAO {
 		return table;
 	}
 
+	/**
+	 * It is a method return all the data from the table users
+	 * 
+	 * @return
+	 */
 	public ArrayList<User> getUsers() {
 		ArrayList<User> users = new ArrayList<>();
 
@@ -107,10 +128,10 @@ public class TableDAO {
 			while (rs.next()) {
 				User user = new User();
 				i++;
-				user.setIdUser(rs.getInt("id"));
-				user.setEmailUser(rs.getString("emailuser"));
-				user.setMdpUser(rs.getString("mdpuser"));
-				user.setTypeUser(rs.getString("typeuser"));
+				user.setId(rs.getInt("id"));
+				user.setEmailUser(rs.getString("email"));
+				user.setMdpUser(rs.getString("password"));
+				user.setProfilUser(rs.getString("profiluser"));
 				users.add(i, user);
 			}
 			connexion.close();
@@ -123,15 +144,21 @@ public class TableDAO {
 
 	}
 
+	/**
+	 * It is a method that allows to change "user" data
+	 * 
+	 * @param user
+	 * @param id
+	 */
 	public void changeUser(User user, int id) {
 		try {
 			Connection connexion = getConnection();
-			String sql = "UPDATE users SET emailuser = ?, typeuser = ?, mdpuser = ? WHERE id = ?";
+			String sql = "UPDATE users SET email = ?, password = ?, profiluser = ? WHERE id = ?";
 			PreparedStatement pstmt = connexion.prepareStatement(sql);
 			pstmt.setString(1, user.getEmailUser());
-			pstmt.setString(2, user.getTypeUser());
-			pstmt.setString(3, user.getMdpUser());
-			pstmt.setInt(4, user.getIdUser());
+			pstmt.setString(2, user.getMdpUser());
+			pstmt.setString(3, user.getProfilUser());
+			pstmt.setInt(4, user.getId());
 			pstmt.executeUpdate();
 			connexion.close();
 		} catch (SQLException e) {
@@ -140,6 +167,13 @@ public class TableDAO {
 		}
 	}
 
+	/**
+	 * getProfilUser It is a method that allows to select the data user where
+	 * emailUser equal user
+	 * 
+	 * @param Email
+	 * @return
+	 */
 	public String getProfilUser(String Email) {
 		try {
 			Connection connexion = getConnection();
@@ -156,33 +190,88 @@ public class TableDAO {
 
 	}
 
+	/**
+	 * addUser It is a method that adds user
+	 * 
+	 * @param user
+	 */
 	public void addUser(User user) {
 		// TODO Auto-generated method stub
-		try{
+		try {
 			Connection connexion = getConnection();
-		     PreparedStatement prepare = connexion.prepareStatement("INSERT INTO parrain VALUES(null,?,?,?)");
-		     prepare.setString (1, user.getEmailUser());
-		     prepare.setString(2, user.getTypeUser());
-		     String password = createRandomCode(10, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-		     prepare.setString (3,password);
-		 
-		     prepare.executeUpdate();
-		}catch(Exception e){
-		     // Message
+			PreparedStatement prepare = connexion
+					.prepareStatement("INSERT INTO users(id,email,password,profiluser) VALUES(?,?,?)");
+			prepare.setString(1, user.getEmailUser());
+			prepare.setString(2, user.getProfilUser());
+			String password = createRandomCode(10, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+			prepare.setString(3, password);
+
+			prepare.executeUpdate();
+		} catch (Exception e) {
+			// Message
 		}
 	}
-	
-	/*
-	 * the methode creat a new password
-	 * */
-	public String createRandomCode(int codeLength, String id) {   
-	    List<Character> temp = id.chars()
-	            .mapToObj(i -> (char)i)
-	            .collect(Collectors.toList());
-	    Collections.shuffle(temp, new SecureRandom());
-	    return temp.stream()
-	            .map(Object::toString)
-	            .limit(codeLength)
-	            .collect(Collectors.joining());
+
+	/**
+	 * createRandomCode It is a method that allows to create new password
+	 * 
+	 * @param codeLength
+	 * @param id
+	 * @return
+	 */
+	public String createRandomCode(int codeLength, String id) {
+		List<Character> temp = id.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
+		Collections.shuffle(temp, new SecureRandom());
+		return temp.stream().map(Object::toString).limit(codeLength).collect(Collectors.joining());
 	}
-}
+
+	/***
+	 * deletUser It is a method that allows to Delete user where id = "personId"
+	 * 
+	 * @param personId
+	 */
+	public void deletUser(int personId) {
+		// TODO Auto-generated method stub
+		try {
+			Connection connexion = getConnection();
+			PreparedStatement prepare = connexion.prepareStatement("delete from users where id=?");
+			prepare.setInt(1, personId);
+			prepare.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	public void insert(Sheet sheet, String tableName) {
+		// TODO Auto-generated method stub
+		Connection connexion = getConnection();
+		int rows = sheet.getPhysicalNumberOfRows();
+		for (int i = 1; i < rows - 1; i++) {
+			String requet = getRequetValue(sheet.getRow(i), sheet.getRow(0), tableName);
+			try {
+				PreparedStatement prepare = connexion
+						.prepareStatement(requet);
+				prepare.executeUpdate();
+			} catch (Exception e) {
+				// Message
+			}
+		}
+
+	}
+
+	private String getRequetValue(Row r,Row r0, String tableName) {
+		// TODO Auto-generated method stub
+		
+			String requetParti1 = "";
+			String requetParti2 = "";
+			for (int j = 0; j < r.getLastCellNum(); j++) {
+				Cell cell = r.getCell(j);
+				requetParti1 = requetParti1 + r0.getCell(j).getStringCellValue() + ",";
+				if (cell.getCellTypeEnum() == CellType.STRING) {
+					requetParti2 = requetParti2 + cell.getStringCellValue() + ",";
+				} else if (cell.getCellTypeEnum() == CellType.NUMERIC) {
+					requetParti2 = requetParti2 + cell.getNumericCellValue() + ",";
+				}
+			}
+		return"INSERT INTO "+tableName+"("+requetParti1+") VALUES("+requetParti2+")";
+}}

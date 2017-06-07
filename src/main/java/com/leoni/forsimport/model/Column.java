@@ -30,10 +30,6 @@ public class Column {
 	}
 
 	/**
-	 * @return the columnTypeJdbc
-	 */
-
-	/**
 	 * @return the columnType
 	 */
 	public String getColumnType() {
@@ -212,7 +208,7 @@ public class Column {
 		this.error = error;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#toString()

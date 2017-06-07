@@ -8,9 +8,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.EncryptedDocumentException;
@@ -30,15 +27,11 @@ import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.leoni.forsimport.dao.TableDAO;
 import com.leoni.forsimport.model.Column;
 import com.leoni.forsimport.model.Table;
 import com.leoni.forsimport.pages.Import;
 import com.leoni.forsimport.services.ExcelStreamResponse;
-import com.monitorjbl.xlsx.StreamingReader;
 
 public class VerifyExcelFile {
 
@@ -102,7 +95,8 @@ public class VerifyExcelFile {
 			}
 		}
 		if (isOkExcelStyle(sheet)) {
-			 insert(sheet, fileName);
+			TableDAO dao = new TableDAO();
+			dao.insert(sheet, fileName);
 		}
 		try {
 			FileOutputStream out = new FileOutputStream(fileOut);
@@ -136,23 +130,20 @@ public class VerifyExcelFile {
 			 */
 	}
 
-	private void insert(Sheet sheet, String fileName) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	private boolean isOkExcelStyle(Sheet sheet) {
 		// TODO Auto-generated method stub
 
 		int rows = sheet.getPhysicalNumberOfRows();
 		int sizeRow = 0;
-		for (int i = 1; i < rows - 1; i++) {
+		for (int i = 0; i < rows - 1; i++) {
 			Row r = sheet.getRow(i);
 			int sizeCell = 0;
 			for (int j = 0; j < r.getLastCellNum(); j++) {
 				Cell cell = r.getCell(i);
-				if (cell.getCellStyle().getFillForegroundColor() == IndexedColors.GREEN.getIndex()) {
-					sizeCell++;
+				if (cell != null) {
+					if (cell.getCellStyle().getFillForegroundColor() != IndexedColors.RED.getIndex()) {
+						sizeCell++;
+					}
 				}
 			}
 			if (sizeRow == r.getLastCellNum()) {
@@ -210,7 +201,7 @@ public class VerifyExcelFile {
 		cell.setCellComment(comment);
 	}
 
-	/*
+	/**
 	 * globalTest This is a method to test all the errors found in the column
 	 */
 
@@ -301,7 +292,9 @@ public class VerifyExcelFile {
 			// cellTypeTable = CellType.STRING;
 			message = "The type for cell is false.";
 			// markErroneousCell(cell,message , r);
-		} else if ((typeTable.equals("int4 (" + column.getPrecision() + ")")) && (!type.equals(CellType.NUMERIC))) {
+		} else if((typeTable.equals("char (" + column.getPrecision() + " )")) && (type != CellType.STRING)){
+			message = "The type for cell is false.";
+		}else if ((typeTable.equals("int4 (" + column.getPrecision() + ")")) && (!type.equals(CellType.NUMERIC))) {
 			// cellTypeTable = CellType.NUMERIC;
 			message = "The type for cell is false.";
 			// markErroneousCell(cell,message , r);

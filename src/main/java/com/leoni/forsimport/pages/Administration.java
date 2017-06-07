@@ -23,7 +23,7 @@ import com.leoni.forsimport.model.User;
 import com.leoni.forsimport.services.ExceptionUtil;
 
 @Import(stylesheet = "context:mybootstrap/css/ajaxformsinaloop.css")
-public class Control {
+public class Administration {
 
 	// Screen fields
 
@@ -39,18 +39,17 @@ public class Control {
 
 	@Property
 	private boolean editing;
-	
+
 	@Property
-	private String newIdUser;
-	
-	@Property
+	@Persist
 	private String newEmailUser;
-	
+
 	@Property
+	@Persist
 	private String newProfilUser;
-	
-//	@Property
-//	private final String BAD_NAME = "Acme";
+
+	// @Property
+	// private final String BAD_NAME = "Acme";
 
 	// Work fields
 
@@ -75,9 +74,10 @@ public class Control {
 
 	@InjectComponent
 	private Form personForm;
-	
+
 	@InjectComponent
 	private Form newPersonForm;
+
 	@Inject
 	private Messages messages;
 
@@ -98,9 +98,9 @@ public class Control {
 		TableDAO dao = new TableDAO();
 		persons = dao.getUsers();
 		personsMap = new HashMap<>();
-		if (persons != null){
+		if (persons != null) {
 			for (User user : persons) {
-				personsMap.put(user.getIdUser(), user);
+				personsMap.put(user.getId(), user);
 			}
 		}
 	}
@@ -134,24 +134,13 @@ public class Control {
 
 	void onValidateFromPersonForm() {
 
-		// Simulate a server-side validation error: return error if anyone's
-		// first name is BAD_NAME.
-
-//		if (person.getEmailUser() != null && person.getEmailUser().equals(BAD_NAME)) {
-//			personForm.recordError("First name must not be " + BAD_NAME + ".");
-//		}
-//
-//		if (person.getIdUser() == 2 && !person.getEmailUser().equals("Mary")) {
-//			personForm.recordError("First name for this person must be Mary.");
-//		}
-
 		if (personForm.getHasErrors()) {
 			return;
 		}
 
 		try {
 			TableDAO dao = new TableDAO();
-			dao.changeUser(user, user.getIdUser());
+			dao.changeUser(user, user.getId());
 		} catch (Exception e) {
 			// Display the cause. In a real system we would try harder to get a
 			// user-friendly message.
@@ -178,6 +167,11 @@ public class Control {
 		}
 	}
 
+	void onToDelet(int personId) {
+		TableDAO dao = new TableDAO();
+		dao.deletUser(personId);
+	}
+
 	void onToEdit(int personId) {
 		// person = personFinderService.findPerson(personId);
 		user = personsMap.get(personId);
@@ -197,17 +191,18 @@ public class Control {
 			ajaxResponseRenderer.addRender(rowZone);
 		}
 	}
-	
-	void onAddUser() {
+
+	void onValidateFromNewPersonForm() {
 		TableDAO dao = new TableDAO();
 		user.setEmailUser(newEmailUser);
-		user.setTypeUser(newProfilUser);
+		user.setProfilUser(newProfilUser);
 		dao.addUser(user);
 	}
+
 	public String getCurrentRowZoneId() {
 		// The id attribute of a row must be the same every time that row asks
 		// for it and unique on the page.
-		return "rowZone_" + user.getIdUser();
+		return "rowZone_" + user.getId();
 	}
 
 	public Format getDateFormat() {

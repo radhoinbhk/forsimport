@@ -1,4 +1,4 @@
-package com.leoni.forsimport.components;
+package com.leoni.forsimport.test;
 
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentResources;

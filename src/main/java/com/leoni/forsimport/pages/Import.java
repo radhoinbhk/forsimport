@@ -59,8 +59,9 @@ public class Import {
 		LOG.info("Starting");
 		String temp_folder = System.getProperty("java.io.tmpdir");
 		// String fileSeparator = File.separator;
-		LOG.info("*************************************Temp folder :" + temp_folder);
-		LOG.info("*************************************Temp folder :" + temp_folder + file.getFileName());
+		// LOG.info("*************************************Temp folder :" +
+		// temp_folder);
+		// LOG.info("*************************************Temp folder :" + temp_folder + file.getFileName());
 		File copied = new File(temp_folder, file.getFileName());
 		file.write(copied);
 		// LOG.info("File copied to temp folder");
