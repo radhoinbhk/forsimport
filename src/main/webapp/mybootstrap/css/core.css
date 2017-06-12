@@ -7088,9 +7088,6 @@ px
 	width: 49%;
 	border-radius: 50%;
 	height: 159%;
-	position: relative;
-	left: -850px;
-    top: 19px;
 }
 
 .avatar .status {

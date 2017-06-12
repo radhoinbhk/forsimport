@@ -23,7 +23,7 @@ import com.leoni.forsimport.model.User;
 import com.leoni.forsimport.services.ExceptionUtil;
 
 @Import(stylesheet = "context:mybootstrap/css/ajaxformsinaloop.css")
-public class Administration {
+public class Administration extends BasePage{
 
 	// Screen fields
 
@@ -86,9 +86,9 @@ public class Administration {
 
 	// The code
 
-	void onActivate() {
-		loadingLoop = false;
-	}
+// 	void onActivate() {
+//		loadingLoop = false;
+//	}
 
 	void setupRender() {
 		loadingLoop = true;

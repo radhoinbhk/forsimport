@@ -3,12 +3,12 @@
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd">
 	<head>
 		<meta charset="utf-8" />
-		<title>${title}</title>
+		<title>ForsImport</title>
+		<link rel="shortcut icon" href="${asset:context:/logoIcon.ico}" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="" />
 		<meta name="author" content="" />
 		<!-- Fav and touch icons -->
-		<link rel="shortcut icon" href="${asset:context:/favicon.ico}" />
 		<link href="${context:mybootstrap/css/bootstrap.min.css}" rel="stylesheet"
 			type="text/css" />
 		<link href="${context:mybootstrap/css/themify-icons.css}" rel="stylesheet"
@@ -89,17 +89,43 @@
 				<nav class="navbar navbar-light">
 					<ul class="nav navbar-nav pull-xs-right">
 						<li class="nav-item dropdown">
-							<div class="avatar box-32">
-								<!-- <img src="${ProfilUser}" /> -->
-								<img src="${context:images/dev.png}" />
+							<a class="nav-link" href="#" data-toggle="dropdown"
+								aria-expanded="false">
+								<div class="avatar box-32">
+									<!-- <img src="${ProfilUser}" /> -->
+									<img src="${context:images/dev.png}" />
+								</div>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right animated flipInY">
+								<!-- <a class="dropdown-item" href="#"> -->
+								<!-- <i class="ti-email m-r-0-5"></i> -->
+								<!-- Inbox -->
+								<!-- </a> -->
+								<!-- <a class="dropdown-item" href="#"> -->
+								<!-- <i class="ti-user m-r-0-5"></i> -->
+								<!-- Profile -->
+								<!-- </a> -->
+								<!-- <a class="dropdown-item" href="#"> -->
+								<!-- <i class="ti-settings m-r-0-5"></i> -->
+								<!-- Settings -->
+								<!-- </a> -->
+								<!-- <div class="dropdown-divider"></div> -->
+								<!-- <a class="dropdown-item" href="#"> -->
+								<!-- <i class="ti-help m-r-0-5"></i> -->
+								<!-- Help -->
+								<!-- </a> -->
+								<a class="dropdown-item" href="Logout">
+									<i class="ti-power-off m-r-0-5"></i>
+									Sign out
+								</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
-						<div class="lang-eng">
-							<img src="${context:images/flag-eng.png}" />
+							<div class="lang-eng">
+								<img src="${context:images/flag-eng.png}" />
 							</div>
 							<div class="lang-germ">
-							<img src="${context:images/flag-germ.png}" />
+								<img src="${context:images/flag-germ.png}" />
 							</div>
 						</li>
 					</ul>

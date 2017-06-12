@@ -3878,6 +3878,9 @@ px
 
 .navbar-nav .nav-item {
 	float: left
+	position: relative;
+    left: -850px;
+    top: 19px;
 }
 
 .navbar-nav .nav-link {

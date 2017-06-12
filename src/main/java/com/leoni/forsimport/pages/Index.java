@@ -1,101 +1,92 @@
 package com.leoni.forsimport.pages;
 
-import java.util.ArrayList;
-
+import org.apache.tapestry5.EventContext;
 import org.apache.tapestry5.alerts.AlertManager;
+import org.apache.tapestry5.alerts.Duration;
+import org.apache.tapestry5.alerts.Severity;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
-import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.Log;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SessionAttribute;
+import org.apache.tapestry5.annotations.Secure;
 import org.apache.tapestry5.corelib.components.Form;
-import org.apache.tapestry5.corelib.components.PasswordField;
-import org.apache.tapestry5.corelib.components.TextField;
+import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.hibernate.Session;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.leoni.forsimport.dao.TableDAO;
-import com.leoni.forsimport.model.User;
+import com.leoni.forsimport.annotations.AnonymousAccess;
+import com.leoni.forsimport.security.AuthenticationException;
+import com.leoni.forsimport.services.Authenticator;
 
-@Import(library = { "js/jquery.min.js", "js/bootstrap.min.js", "js/jquery.validation.min.js",
-		"js/bootstrap-show-password.min.js", "js/TweenMax.min.js", "js/common.js", "js/demo.temp.js" })
+/**
+ * User can sign up on the
+ * 
+ * @author karesti
+ */
+@AnonymousAccess
+@Secure
+@Import(library = {"js/jquery.min.js", "js/bootstrap.min.js", "js/jquery.validation.min.js",
+"js/bootstrap-show-password.min.js", "js/TweenMax.min.js", "js/common.js", "js/demo.temp.js" })
 public class Index {
-	@Inject
-	private Logger logger;
-
-	@Inject
-	private AlertManager alertManager;
-
-	@InjectComponent
-	private Form login;
-
-	@InjectComponent("email")
-	private TextField emailField;
-
-	@InjectComponent("password")
-	private PasswordField passwordField;
+	private final static Logger LOG = LoggerFactory.getLogger(Index.class);
 
 	@Property
-	private String email;
+	private String emailUser;
 
 	@Property
 	private String password;
 
-	void onValidateFromLogin() {
-		if (!isEmailUser(email)) {
-			login.recordError(emailField, "email incorect");
-		}
-		if (!isPasswordUser(password)) {
-			login.recordError(passwordField, "password incorect");
+	@Property
+	String target; // target page name
+
+	@Inject
+	private Authenticator authenticator;
+
+	@Component
+	private Form loginForm;
+
+	@Inject
+	private Messages messages;
+
+	@Inject
+	private AlertManager alertManager;
+
+	/**
+	 * Respond to page activation by capturing the "target" path info as the
+	 * name of the target page (the page to return to after login)
+	 * 
+	 * @param context
+	 *            the EventContext
+	 */
+	public void onActivate(EventContext context) {
+		if (context.getCount() > 0) {
+			target = context.get(String.class, 0);
+		} else {
+			target = "Import";
 		}
 	}
 
-	private boolean isEmailUser(String email2) {
-		// TODO Auto-generated method stub
-		User user = new User();
-		ArrayList<User> users = new ArrayList<>();
-		TableDAO dao = new TableDAO();
-		users = dao.getUsers();
-		boolean r = false;
-		if (users != null) {
-			for (int i = 0; i < users.size(); i++) {
-				user = users.get(i);
-				if (email2.equals(user.getEmailUser())) {
-					r = true;
-					break;
-				}
-			}
+	@Log
+	public Object onSubmitFromLoginForm() {
+		LOG.debug("onSubmitFromLoginForm");
+		try {
+			authenticator.login(emailUser, password);
+		} catch (AuthenticationException ex) {
+			// bad username or password entered
+			loginForm.recordError(messages.get("error.login"));
+			return null;
 		}
-		return r;
-	}
+		// was login successful?
+		if (authenticator.isLoggedIn()) {
+			// display a transient "success" message
+			alertManager.alert(Duration.TRANSIENT, Severity.SUCCESS,
+					messages.format("nav.welcome", authenticator.getLoggedUser().getEmailUser()));
 
-	public boolean isPasswordUser(String password2) {
-		User user = new User();
-		ArrayList<User> users = new ArrayList<>();
-		TableDAO dao = new TableDAO();
-		users = dao.getUsers();
-		boolean r = false;
-		if (users != null) {
-		for (int i = 0; i < users.size(); i++) {
-			user = users.get(i);
-			if (password2.equals(user.getMdpUser())) {
-				r = true;
-				break;
-			}
+			// redirect to the page the user wanted before being sent to the
+			// login page
+			return target;
 		}
-		}
-		return r;
+		return Index.class;
 	}
-
-	Object onSuccessFromLogin() {
-		logger.info("Login successful!");
-		alertManager.success("Welcome aboard!");
-		return com.leoni.forsimport.pages.Import.class;
-	}
-
-	void onFailureFromLogin() {
-		logger.warn("Login error!");
-		alertManager.error("I'm sorry but I can't log you in!");
-	}
-
 }

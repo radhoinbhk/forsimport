@@ -1,16 +1,17 @@
-<html title="Login"
-	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+<!DOCTYPE html>
+<html t:title="Tapestry5-hotel-booking Sign In" t:pageTitle="Members login"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
 	<head>
+		<title>LOGIN</title>
+		<link rel="shortcut icon" href="${asset:context:/logoIcon.ico}" />
 		<link href="${context:mybootstrap/css/bootstrap.min.css}" rel="stylesheet"
 			type="text/css" />
 		<link href="${context:mybootstrap/css/main.css}" rel="stylesheet"
 			type="text/css" />
 	</head>
-	
 	<body class="theme-default">
 		<section class="page-content">
-			<div class="page-content-inner"
-				style="background-image: url(${context:/images/4.jpg})">
+			<div class="page-content-inner" style="background-image: url(${context:/images/4.jpg})">
 				<!-- Login Page -->
 				<div class="single-page-block-header">
 					<div class="row">
@@ -34,31 +35,28 @@
 							</h3>
 							<br />
 							<br />
-							<!-- <div class="row"> -->
-							<!-- <div class="span4 offset3"> -->
-							<t:form t:id="login">
+							<form t:type="form" t:id="loginForm">
+								<t:hidden value="target" />
+								<t:errors />
 								<div class="form-group">
-									<t:textfield t:id="email" class="form-control"
-										validate="required" placeholder="Email address" />
+									<div class="form-group">
+										<t:textfield t:type="textfield" t:id="emailUser"
+											class="form-control" placeholder="Email address" />
+									</div>
 								</div>
 								<div class="form-group">
-									<t:passwordfield t:id="password" class="form-control password"
-										validate="required" placeholder="Password" />
+									<t:passwordfield type="password" t:type="passwordfield"
+										t:id="password" class="form-control password" placeholder="Password" />
 								</div>
 								<div class="form-actions">
-									<t:submit class="btn btn-primary width-150" value="Sign in" />
+									<t:submit type="submit" class="btn btn-primary width-150"
+										value="Sign in" />
 								</div>
-							</t:form>
-							<!-- </div> -->
-							<!-- </div> -->
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</section>
-
-		<div class="main-backdrop">
-		</div>
 	</body>
 </html>

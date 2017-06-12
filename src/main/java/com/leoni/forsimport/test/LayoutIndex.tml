@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+<head>
+	<title>Tapestry Hotel Booking Demo - ${pageTitle}</title>
+</head>
+<body id="homepage">
+	<div class="container bs">
+		<div class="row">
+			<ul class="topnav">
+				<t:security.authenticated>
+					<li class="last">
+						<a href="#" t:type="actionlink" t:id="logout" id="logout">${message:nav.logout}</a>
+					</li>
+				<p:else>
+						<li class="last">
+							<t:pageLink page="Index">${message:nav.login}</t:pageLink>
+						</li>
+				</p:else>
+				</t:security.authenticated>
+			</ul>
+		</div>
+		<div class="row">
+			<div id="content" class="col-md-8">
+				<t:body />
+				<div class="clearer"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

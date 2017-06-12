@@ -1,27 +1,38 @@
 package com.leoni.forsimport.model;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Version;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.apache.tapestry5.ValidationException;
 
 /**
- * The Person entity.
+ * The user entity.
  */
 @Entity
-@SuppressWarnings("serial")
-public class User implements Serializable {
+@NamedQueries(
+{
+        @NamedQuery(name = User.ALL, query = "Select u from User u"),
+        @NamedQuery(name = User.BY_USERNAME_OR_EMAIL, query = "Select u from User u where u.emailUser = :emailUser"),
+        @NamedQuery(name = User.BY_CREDENTIALS, query = "Select u from User u where u.emailUser = :emailUser and u.password = :password") })
+@Table(name = "users")
+public class User  {
+
+    public static final String ALL = "User.all";
+
+    public static final String BY_USERNAME_OR_EMAIL = "User.byUserNameOrEmail";
+
+    public static final String BY_CREDENTIALS = "User.byCredentials";
+
 	private static final String DEVELOPER = "developer";
 
 	@Id
@@ -29,23 +40,15 @@ public class User implements Serializable {
 	@Column(nullable = false)
 	private Integer id;
 
-	@Version
-	@Column(nullable = false)
-	private Integer version;
-
-	@Column(length = 10, nullable = false)
-	@NotNull
-	@Size(max = 10)
+	@Column(length = 255, nullable = true)
 	private String emailUser;
 
-	@Column(length = 10, nullable = false)
+	@Column(length = 255, nullable = true)
 	@NotNull
-	@Size(max = 10)
+	@Size(max = 255)
 	private String profilUser;
 
-	@Temporal(TemporalType.DATE)
-	@NotNull
-	private String mdpUser;
+	private String password;
 
 	public String toString() {
 		final String DIVIDER = ", ";
@@ -55,8 +58,8 @@ public class User implements Serializable {
 		buf.append("[");
 		buf.append("id=" + id + DIVIDER);
 		buf.append("emailUser=" + emailUser + DIVIDER);
-		buf.append("typeUser=" + profilUser + DIVIDER);
-		buf.append("mdpUser=" + mdpUser);
+		buf.append("profiluser=" + profilUser + DIVIDER);
+		buf.append("password=" + password);
 		buf.append("]");
 		return buf.toString();
 	}
@@ -65,11 +68,11 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public User(String emailUser, String profilUser, String mdpUser) {
+	public User(String emailUser, String profilUser, String password) {
 		super();
 		this.emailUser = emailUser;
 		this.profilUser = profilUser;
-		this.mdpUser = mdpUser;
+		this.password = password;
 	}
 
 	// The need for an equals() method is discussed at
@@ -140,15 +143,15 @@ public class User implements Serializable {
 	/**
 	 * @return the mdpUser
 	 */
-	public String getMdpUser() {
-		return mdpUser;
+	public String getPassword() {
+		return password;
 	}
 
 	/**
 	 * @param mdpUser the mdpUser to set
 	 */
-	public void setMdpUser(String mdpUser) {
-		this.mdpUser = mdpUser;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public boolean isDeveloper() {

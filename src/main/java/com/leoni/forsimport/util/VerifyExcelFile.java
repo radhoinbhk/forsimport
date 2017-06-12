@@ -94,10 +94,10 @@ public class VerifyExcelFile {
 				}
 			}
 		}
-		if (isOkExcelStyle(sheet)) {
-			TableDAO dao = new TableDAO();
-			dao.insert(sheet, fileName);
-		}
+//		if (isOkExcelStyle(sheet)) {
+//			TableDAO dao = new TableDAO();
+//			dao.insert(sheet, fileName);
+//		}
 		try {
 			FileOutputStream out = new FileOutputStream(fileOut);
 			workbook.write(out);
@@ -130,7 +130,7 @@ public class VerifyExcelFile {
 			 */
 	}
 
-	private boolean isOkExcelStyle(Sheet sheet) {
+	public boolean isOkExcelStyle(Sheet sheet) {
 		// TODO Auto-generated method stub
 
 		int rows = sheet.getPhysicalNumberOfRows();
@@ -146,11 +146,11 @@ public class VerifyExcelFile {
 					}
 				}
 			}
-			if (sizeRow == r.getLastCellNum()) {
+			if (sizeCell == r.getLastCellNum()) {
 				sizeRow++;
 			}
 		}
-		return sizeRow == rows;
+		return sizeRow == rows-1;
 	}
 
 	/*

@@ -1,35 +1,38 @@
 package com.leoni.forsimport.pages;
 
-import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.services.Request;
-import org.apache.tapestry5.services.Session;
+
+import com.leoni.forsimport.model.User;
+import com.leoni.forsimport.services.Authenticator;
 
 /**
  * @author HP
  *
  */
 public class BasePage {
+
+	@Inject
+	private Authenticator authenticator;
 	
+	@InjectPage
+	private Index index;
 
-    @Property
-    private String email;
+	public Object onActivate() {
+		if (!authenticator.isLoggedIn()) {
+			return index;
+		}
+		return null;
+	}
+	
+    public boolean isDeveloper() {
+		String profile = null ;
+		User user = authenticator.getLoggedUser();
+		if (user != null) {
+			profile = user.getProfilUser();
+		}
+		return "developer".equals(profile);
+	}
 
 
-    @Inject
-    private Request request;
-
-    // The code
-
-    public boolean getHasSession() {
-        return request.getSession(false) != null;
-    }
-
-    public Session getSession() {
-        return request.getSession(false);
-    }
-
-    public Object getAttributeValue() {
-        return getSession().getAttribute(email);
-    }
 }

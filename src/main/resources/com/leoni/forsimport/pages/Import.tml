@@ -7,29 +7,42 @@
 				<div class="row">
 					<t:form class="form-inline">
 						<div class="col-md-6 offset-md-3">
-
 							<t:errors />
-							<!-- <t:if test="developer"> -->
-							<h4>${message:select_table_name}</h4>
-							<!-- <input t:type="textfield" class="form-control" t:id="table" -->
-							<!-- value="tableName" validate="required" /> -->
-							<!-- <div class="col-sm-3"> -->
-							<t:textfield t:id="tableName" t:mixins="autocomplete"
+								<h4>${message:select_table_name}</h4>
+								<t:textfield t:id="tableName" t:mixins="autocomplete"
 								placeholder="table name" />
-							<!-- </div> -->
-							<!-- </t:if> -->
+								<!-- <div class="col-sm-3"> -->
+<!-- 								<t:textfield t:id="tableName" t:mixins="autocomplete" -->
+<!-- 								placeholder="table name" /> -->
+								<!-- </div> -->
+<!-- 							<t:else> -->
+<!-- 							<t:hidden value="user.Id" /> -->
+<!-- 							</t:else> -->
 							<h4>${message:select_file}</h4>
 							<input t:type="upload" class="dropify" t:id="file" t:value="file"
 								validate="required" />
-								<br/>
-								<br/>
-								
-							<input t:type="submit"  t:id="upload"
-								t:value="Upload" />
+							<br />
+							<br />
+							<input t:type="submit" t:id="upload" t:value="Upload" />
 						</div>
 					</t:form>
 				</div>
 			</div>
 		</div>
+	</div>
+	<br />
+	<br />
+	<div class="col-md-6 offset-md-3">
+		<t:If test="okExcel">
+			<div class="alert alert-info-fill alert-dismissible fade in"
+				role="alert">
+				<i class="ti-check"></i>&nbsp;
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				verification terminer !
+			</div>
+		</t:If>
 	</div>
 </html>

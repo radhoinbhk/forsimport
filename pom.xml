@@ -16,11 +16,6 @@
 			<version>5.4.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.tapestry</groupId>
-			<artifactId>tapestry-hibernate</artifactId>
-			<version>${tapestry-release-version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>2.3.2</version>
@@ -87,21 +82,42 @@
 			<version>${tapestry-release-version}</version>
 		</dependency>
 
-		<!-- Provided by the servlet container, but sometimes referenced in the 
-			application code. -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>${servlet-api-release-version}</version>
-			<scope>provided</scope>
-		</dependency>
-
 		<!-- Provide dependency to the Tapestry javadoc taglet which replaces the 
 			Maven component report -->
 		<dependency>
 			<groupId>org.apache.tapestry</groupId>
 			<artifactId>tapestry-javadoc</artifactId>
 			<version>${tapestry-release-version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-hibernate</artifactId>
+			<version>${tapestry-release-version}</version>
+		</dependency>
+
+		<!--dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.0.2.GA</version>
+			<type>jar</type>
+		</dependency>
+
+        <dependency>
+            <groupId>org.apache.tapestry</groupId>
+            <artifactId>tapestry-beanvalidator</artifactId>
+            <version>${tapestry-release-version}</version>
+        </dependency-->
+
+
+		<!-- Provided by the servlet container, but sometimes referenced in the 
+			application code. -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet-api-release-version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -182,7 +198,6 @@
 					</systemProperties>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
