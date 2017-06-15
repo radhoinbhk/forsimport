@@ -1,4 +1,4 @@
-package com.leoni.forsimport.pages;
+package com.leoni.forsimport.test;
 
 import java.util.ArrayList;
 import java.util.List;

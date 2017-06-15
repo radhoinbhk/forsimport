@@ -22,8 +22,8 @@ public class TabNames {
 	}
 
 	public static void main(String[] args) {
-//		TabNames names = new TabNames();
-//		names.getTableNames();
+		TabNames names = new TabNames();
+		names.getTableNames();
 	}
 	
 	/**

@@ -31,7 +31,7 @@
 						<div class="single-page-block-form">
 							<h3 class="text-center">
 								<i class="icmn-enter margin-right-10"></i>
-								Login
+								${message:login}
 							</h3>
 							<br />
 							<br />
@@ -41,16 +41,16 @@
 								<div class="form-group">
 									<div class="form-group">
 										<t:textfield t:type="textfield" t:id="emailUser"
-											class="form-control" placeholder="Email address" />
+											class="form-control" placeholder="${message:Email}" />
 									</div>
 								</div>
 								<div class="form-group">
 									<t:passwordfield type="password" t:type="passwordfield"
-										t:id="password" class="form-control password" placeholder="Password" />
+										t:id="password" class="form-control password" placeholder="${message:Password}" />
 								</div>
 								<div class="form-actions">
 									<t:submit type="submit" class="btn btn-primary width-150"
-										value="Sign in" />
+										value="${message:Sign_in}" />
 								</div>
 							</form>
 						</div>

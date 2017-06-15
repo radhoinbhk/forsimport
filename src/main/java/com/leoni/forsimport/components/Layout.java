@@ -16,16 +16,16 @@ import com.leoni.forsimport.services.Authenticator;
 /**
  * Layout component for pages of application test-project.
  */
-@Import(library = {"vendor/jquery/jquery-1.12.3.min.js", "vendor/tether/js/tether.min.js",
-		"vendor/bootstrap/js/bootstrap.min.js", "vendor/detectmobilebrowser/detectmobilebrowser.js",
-		"vendor/jscrollpane/jquery.mousewheel.js", "vendor/jscrollpane/mwheelIntent.js",
-		"vendor/jscrollpane/jquery.jscrollpane.min.js", "vendor/waves/waves.min.js", "vendor/chartist/chartist.min.js",
-		"vendor/switchery/dist/switchery.min.js", "vendor/flot/jquery.flot.min.js",
-		"vendor/flot/jquery.flot.resize.min.js", "vendor/flot.tooltip/js/jquery.flot.tooltip.min.js",
-		"vendor/CurvedLines/curvedLines.js", "vendor/TinyColor/tinycolor.js",
-		"vendor/sparkline/jquery.sparkline.min.js", "vendor/raphael/raphael.min.js", "vendor/morris/morris.min.js",
-		"vendor/jvectormap/jquery-jvectormap-2.0.3.min.js", "vendor/jvectormap/jquery-jvectormap-world-mill.js",
-		"vendor/dropify/dist/js/dropify.min.js", "js/app.js", "js/demo.js", "js/forms-upload.js" })
+@Import(library = {"vendor/bootstrap/js/bootstrap.min.js"
+//		"vendor/jscrollpane/jquery.mousewheel.js", "vendor/jscrollpane/mwheelIntent.js",
+//		"vendor/jscrollpane/jquery.jscrollpane.min.js", "vendor/waves/waves.min.js", "vendor/chartist/chartist.min.js",
+//		"vendor/switchery/dist/switchery.min.js", "vendor/flot/jquery.flot.min.js",
+//		"vendor/flot/jquery.flot.resize.min.js", "vendor/flot.tooltip/js/jquery.flot.tooltip.min.js",
+//		"vendor/CurvedLines/curvedLines.js", "vendor/TinyColor/tinycolor.js",
+//		"vendor/sparkline/jquery.sparkline.min.js", "vendor/raphael/raphael.min.js", "vendor/morris/morris.min.js",
+//		"vendor/jvectormap/jquery-jvectormap-2.0.3.min.js", "vendor/jvectormap/jquery-jvectormap-world-mill.js",
+//		"vendor/dropify/dist/js/dropify.min.js", "js/app.js", "js/demo.js", "js/forms-upload.js" 
+})
 public class Layout {
 	@Inject
 	private ComponentResources resources;
@@ -77,18 +77,4 @@ public class Layout {
 		}
 		return null;
 	}
-	
-	// public String getImgName(){
-	// TableDAO dao = new TableDAO();
-	// BasePage base = new BasePage();
-	// LOG.info("***********"+base.getEmail());
-	// if("ppe".equals(dao.getProfilUser(base.getEmail()))){
-	// return "${context:images/ppe.png}";
-	// }else if ("client dachat".equals(dao.getProfilUser(base.getEmail()))){
-	// return "${context:images/SA.png}";
-	// }else{
-	// return "${context:images/dev.png}";
-	// }
-	//
-	// }
 }

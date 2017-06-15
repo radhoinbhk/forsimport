@@ -94,10 +94,10 @@ public class VerifyExcelFile {
 				}
 			}
 		}
-//		if (isOkExcelStyle(sheet)) {
-//			TableDAO dao = new TableDAO();
-//			dao.insert(sheet, fileName);
-//		}
+		if (isOkExcelStyle(sheet)) {
+			TableDAO dao = new TableDAO();
+			dao.insert(sheet, fileName);
+		}
 		try {
 			FileOutputStream out = new FileOutputStream(fileOut);
 			workbook.write(out);
@@ -131,8 +131,8 @@ public class VerifyExcelFile {
 	}
 
 	public boolean isOkExcelStyle(Sheet sheet) {
+		
 		// TODO Auto-generated method stub
-
 		int rows = sheet.getPhysicalNumberOfRows();
 		int sizeRow = 0;
 		for (int i = 0; i < rows - 1; i++) {

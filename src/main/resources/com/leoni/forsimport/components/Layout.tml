@@ -57,7 +57,7 @@
 											<span class="s-icon">
 												<i class="fa fa-download" />
 											</span>
-											<span class="s-text">${pageName}</span>
+											<span class="s-text">${message:page_name_Export}</span>
 										</t:pagelink>
 									</t:if>
 									<t:if test="importPage">
@@ -66,7 +66,7 @@
 												<span class="s-icon">
 													<i class="fa fa-upload" />
 												</span>
-												<span class="s-text">${pageName}</span>
+												<span class="s-text">${message:page_name_Import}</span>
 											</div>
 										</t:pagelink>
 									</t:if>
@@ -75,7 +75,7 @@
 											<span class="s-icon">
 												<i class="fa fa-file-text" />
 											</span>
-											<span class="s-text">${pageName}</span>
+											<span class="s-text">${message:page_name_Administration}</span>
 										</t:pagelink>
 									</t:if>
 								</t:any>
@@ -97,23 +97,6 @@
 								</div>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right animated flipInY">
-								<!-- <a class="dropdown-item" href="#"> -->
-								<!-- <i class="ti-email m-r-0-5"></i> -->
-								<!-- Inbox -->
-								<!-- </a> -->
-								<!-- <a class="dropdown-item" href="#"> -->
-								<!-- <i class="ti-user m-r-0-5"></i> -->
-								<!-- Profile -->
-								<!-- </a> -->
-								<!-- <a class="dropdown-item" href="#"> -->
-								<!-- <i class="ti-settings m-r-0-5"></i> -->
-								<!-- Settings -->
-								<!-- </a> -->
-								<!-- <div class="dropdown-divider"></div> -->
-								<!-- <a class="dropdown-item" href="#"> -->
-								<!-- <i class="ti-help m-r-0-5"></i> -->
-								<!-- Help -->
-								<!-- </a> -->
 								<a class="dropdown-item" href="Logout">
 									<i class="ti-power-off m-r-0-5"></i>
 									Sign out

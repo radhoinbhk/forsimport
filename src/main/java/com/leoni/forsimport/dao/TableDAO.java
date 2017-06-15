@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -23,13 +24,13 @@ import javax.persistence.Query;
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import com.leoni.forsimport.model.Column;
 import com.leoni.forsimport.model.Table;
 import com.leoni.forsimport.model.User;
+import com.sun.xml.internal.ws.api.message.AddressingUtils;
 
 /**
  * class DAO
@@ -242,20 +243,21 @@ public class TableDAO {
 	 * 
 	 * @param user
 	 */
-	public void addUser(User user) {
+	public  void addUser(User user) {
 		// TODO Auto-generated method stub
 		try {
 			Connection connexion = getConnection();
 			PreparedStatement prepare = connexion
-					.prepareStatement("INSERT INTO users(id,email,password,profiluser) VALUES(?,?,?)");
+					.prepareStatement("INSERT INTO users(emailuser,password,profiluser) VALUES(?,?,?)");
 			prepare.setString(1, user.getEmailUser());
-			prepare.setString(2, user.getProfilUser());
+			prepare.setString(3, user.getProfilUser());
 			String password = createRandomCode(10, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-			prepare.setString(3, password);
-
+			prepare.setString(2, "123456");
 			prepare.executeUpdate();
+			connexion.close();
 		} catch (Exception e) {
 			// Message
+			System.out.println(e);
 		}
 	}
 

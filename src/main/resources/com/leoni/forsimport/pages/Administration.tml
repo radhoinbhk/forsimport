@@ -17,12 +17,12 @@
 										<table class="inner">
 											<thead>
 												<tr>
-													<th>Id</th>
-													<th>email user</th>
+													<th>${message:Id}</th>
+													<th>${message:email_user}</th>
 													<th></th>
-													<th>profil user</th>
+													<th>${message:profil_user}</th>
 													<th></th>
-													<th>Action</th>
+													<th>${message:Action}</th>
 												</tr>
 											</thead>
 										</table>
@@ -66,14 +66,14 @@
 															<td>
 																<t:if test="!editing">
 																	<t:eventlink event="toEdit" context="user.Id"
-																		async="true" class="btn btn-default">Edit</t:eventlink>
+																		async="true" class="btn btn-default">${message:Edit}</t:eventlink>
 																	<t:eventlink event="toDelet" context="user.Id"
-																		async="true" class="btn btn-default">Delet</t:eventlink>
+																		async="true" class="btn btn-default">${message:Delet}</t:eventlink>
 																</t:if>
 																<t:if test="editing">
 																	<t:submit t:id="save" value="Save" />
 																	<t:eventlink event="cancel" context="user.Id"
-																		async="true" class="btn btn-default">Cancel</t:eventlink>
+																		async="true" class="btn btn-default">${message:Cancel}</t:eventlink>
 																</t:if>
 															</td>
 														</tr>
@@ -97,12 +97,12 @@
 								<th>
 									<table class="inner">
 										<thead>
-											<t:form t:id="newPersonForm">
+											<t:form t:id="NewPersonForm">
 												<tr>
 													<th>
 													</th>
 													<th>
-														<t:textfield t:id="newEmailUser" placeholder="email user"
+														<t:textfield t:id="newEmailUser" placeholder="${message:Email}"
 															type="email" />
 													</th>
 													<th></th>

@@ -74,14 +74,14 @@ public class Index {
 			authenticator.login(emailUser, password);
 		} catch (AuthenticationException ex) {
 			// bad username or password entered
-			loginForm.recordError(messages.get("error.login"));
+			loginForm.recordError("email or password incorrect");
 			return null;
 		}
 		// was login successful?
 		if (authenticator.isLoggedIn()) {
 			// display a transient "success" message
 			alertManager.alert(Duration.TRANSIENT, Severity.SUCCESS,
-					messages.format("nav.welcome", authenticator.getLoggedUser().getEmailUser()));
+					messages.format("welcome", authenticator.getLoggedUser().getEmailUser()));
 
 			// redirect to the page the user wanted before being sent to the
 			// login page

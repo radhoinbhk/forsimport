@@ -12,14 +12,13 @@
 						<div class="col-md-6 offset-md-3">
 						<h4>${message:select_file_T} </h4>
 							<div class="form-group">
-								
 								<div class="col-sm-3">
 									<t:textfield t:id="tableName" t:mixins="autocomplete"
-										placeholder="table name" />
+										placeholder="${message:table_name}" />
 										<br/>
 										<br/>
 									<input t:type="submit" t:id="Export"
-										t:value="Export" />
+										t:value="${message:page_name_Export}" />
 								</div>
 							</div>
 						</div>

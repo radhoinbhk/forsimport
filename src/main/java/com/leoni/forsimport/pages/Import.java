@@ -25,37 +25,35 @@ import com.monitorjbl.xlsx.StreamingReader;
  * Upload Excel file.
  */
 
-public class Import extends BasePage {
+public class Import extends BasePage{
 	private static final Logger LOG = Logger.getLogger(Import.class);
 
 	@Property
 	@Persist
-	@NotNull
 	private String tableName;
 
 	@Property
 	private UploadedFile file;
 	Error error = new Error();
 
-	// Generally useful bits and pieces
-	@Inject
-	private TabNames tableNames;
-
 	User user;
+	   @Inject
+	    private TabNames tableNames;
 
-	// The code
-	List<String> onProvideCompletionsFromtableName(String partial) {
-		List<String> matches = new ArrayList<String>();
-		partial = partial.toUpperCase();
+	    // The code
+	    List<String> onProvideCompletionsFromTableName(String partial) {
+	    	LOG.info("trying to fetch table names");
+	    	List<String> matches = new ArrayList<String>();
+	        partial = partial.toUpperCase();
 
-		for (String countryName : tableNames.getTableNames()) {
-			if (countryName.toUpperCase().contains(partial)) {
-				matches.add(countryName);
-			}
-		}
+	        for (String countryName : tableNames.getTableNames()) {
+	            if (countryName.toUpperCase().contains(partial)) {
+	                matches.add(countryName);
+	            }
+	        }
 
-		return matches;
-	}
+	        return matches;
+	    }
 
 	/**
 	 * @return
@@ -78,12 +76,7 @@ public class Import extends BasePage {
 		Workbook workbook = StreamingReader.builder().rowCacheSize(100).bufferSize(4096).open(file.getStream());
 		Sheet sheet = workbook.getSheetAt(0);
 		VerifyExcelFile verifyExcelFile = new VerifyExcelFile();
-		test = verifyExcelFile.isOkExcelStyle(sheet);
 		return verifyExcelFile.getExcelFileverify(copied, tableName);
-	}
-
-	public boolean isOkExcel() {
-		return test;
 	}
 
 }

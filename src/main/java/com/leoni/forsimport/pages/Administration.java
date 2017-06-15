@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Persist;
@@ -24,6 +25,7 @@ import com.leoni.forsimport.services.ExceptionUtil;
 
 @Import(stylesheet = "context:mybootstrap/css/ajaxformsinaloop.css")
 public class Administration extends BasePage{
+	private static final Logger LOG = Logger.getLogger(Import.class);
 
 	// Screen fields
 
@@ -193,10 +195,11 @@ public class Administration extends BasePage{
 	}
 
 	void onValidateFromNewPersonForm() {
+		User user1 = new User();
 		TableDAO dao = new TableDAO();
-		user.setEmailUser(newEmailUser);
-		user.setProfilUser(newProfilUser);
-		dao.addUser(user);
+		user1.setEmailUser(newEmailUser);
+		user1.setProfilUser(newProfilUser);
+		dao.addUser(user1);
 	}
 
 	public String getCurrentRowZoneId() {
